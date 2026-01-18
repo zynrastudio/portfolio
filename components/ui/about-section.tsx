@@ -6,6 +6,7 @@ import { useRef } from 'react';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Link from 'next/link';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -106,18 +107,18 @@ export default function AboutSection() {
           </div>
 
           <div className="flex flex-wrap gap-4 pt-4">
-            <a
-              href="#projects"
+            <Link
+              href="/projects"
               className="group relative flex items-center gap-2 rounded-2xl bg-white px-6 py-3 text-sm font-light tracking-tight text-black transition-all duration-300 hover:scale-105 hover:bg-white/90"
             >
               Explore Projects
-            </a>
-            <a
-              href="#contact"
+            </Link>
+            <Link
+              href="/contact"
               className="rounded-2xl border border-white/10 bg-white/5 px-6 py-3 text-sm font-light tracking-tight text-white backdrop-blur-sm transition-all duration-300 hover:bg-white/10 hover:border-white/20"
             >
               Get In Touch
-            </a>
+            </Link>
           </div>
         </div>
 

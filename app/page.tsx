@@ -13,15 +13,15 @@ export default function Home() {
       <Header />
       <main>
         <Hero 
-          title="Building Digital Experiences That Matter"
-          description="Full-stack developer specializing in web applications, mobile apps, Chrome extensions, and AI-powered solutions. Transforming ideas into elegant, functional software."
-          badgeText="Available for Work"
+          title="Crafting Elegant Digital Solutions"
+          description="Zynra Studio specializes in web and mobile development. We transform your vision into powerful, user-friendly applications that drive results."
+          badgeText="Available for Projects"
           badgeLabel="Open"
           ctaButtons={[
-            { text: "View Projects", href: "#projects", primary: true },
-            { text: "Get in Touch", href: "#contact" }
+            { text: "View Our Work", href: "/projects", primary: true },
+            { text: "Book a Call", href: "/contact" }
           ]}
-          microDetails={["Web Development", "Mobile Apps", "AI Solutions"]}
+          microDetails={["Web Development", "Mobile Apps", "UI/UX Design"]}
         />
         <AboutSection />
         <SkillsSection />

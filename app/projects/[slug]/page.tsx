@@ -5,8 +5,6 @@ import { useRef, useEffect } from 'react';
 import SectionContainer from '@/components/ui/section-container';
 import { 
   ArrowLeft, 
-  ExternalLink, 
-  Github, 
   CheckCircle2, 
   Calendar, 
   User, 
@@ -66,9 +64,9 @@ export default function CaseStudyPage() {
       <div className="flex h-screen items-center justify-center bg-black text-white">
         <div className="text-center space-y-6">
           <h1 className="text-4xl font-light tracking-tighter">Project Not Found</h1>
-          <Link href="/#projects" className="inline-flex items-center gap-2 text-white/50 hover:text-white transition-colors">
+          <Link href="/projects" className="inline-flex items-center gap-2 text-white/50 hover:text-white transition-colors">
             <ArrowLeft size={18} />
-            Back to Portfolio
+            Back to Projects
           </Link>
         </div>
       </div>
@@ -94,7 +92,7 @@ export default function CaseStudyPage() {
 
         <div className="hero-content relative mx-auto w-full max-w-7xl px-6 md:px-10 lg:px-16 z-10">
           <Link 
-            href="/#projects" 
+            href="/projects" 
             className="mb-8 inline-flex items-center gap-2 text-sm font-light tracking-tight text-white/50 hover:text-white transition-all duration-300"
           >
             <ArrowLeft size={16} />
@@ -215,6 +213,25 @@ export default function CaseStudyPage() {
           </div>
         </div>
 
+        {/* Founder Video Review */}
+        {project.videoUrl && (
+          <div className="section-animate space-y-12">
+            <div className="flex flex-col items-center gap-4">
+              <h2 className="text-xl font-light tracking-tight text-white/40 uppercase tracking-[0.2em]">Founder Review</h2>
+              <div className="h-px w-12 bg-white/10" />
+            </div>
+            <div className="relative mx-auto max-w-4xl aspect-video rounded-[2.5rem] overflow-hidden border border-white/10 bg-white/[0.02] shadow-2xl">
+              <iframe
+                src={project.videoUrl}
+                title={`Founder review for ${project.title}`}
+                className="absolute inset-0 w-full h-full"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+          </div>
+        )}
+
         {/* Tech Stack used */}
         <div className="section-animate space-y-12">
           <div className="flex flex-col items-center gap-4">
@@ -235,7 +252,7 @@ export default function CaseStudyPage() {
           <div className="inline-flex flex-col items-center gap-8">
             <p className="text-[10px] font-light uppercase tracking-[0.3em] text-white/30">Next Project</p>
             <Link 
-              href="/#projects" 
+              href="/projects" 
               className="group flex items-center gap-4 text-3xl font-light tracking-tighter text-white/60 hover:text-white transition-all duration-500"
             >
               Explore More Work

@@ -1,6 +1,7 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { defaultMetadata, organizationSchema } from "@/lib/seo-config";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -12,9 +13,16 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "Portfolio - Where algorithms become art",
-  description: "A minimal portfolio with a neural canvas — crisp, elegant, and quietly expressive. Built with React, Three.js, and custom shaders.",
+export const metadata: Metadata = defaultMetadata;
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  themeColor: [
+    { media: '(prefers-color-scheme: dark)', color: '#000000' },
+    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
+  ],
 };
 
 export default function RootLayout({
@@ -24,6 +32,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationSchema),
+          }}
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

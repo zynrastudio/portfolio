@@ -7,6 +7,7 @@ export interface Project {
   description: string;
   fullDescription: string;
   image: string;
+  videoUrl?: string;
   tags: string[];
   impact: string;
   demoUrl: string;
@@ -21,123 +22,126 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    title: 'Enterprise AI Ecosystem',
-    slug: 'enterprise-ai-ecosystem',
+    title: 'Voiceventure AI',
+    slug: 'voiceventure-ai',
     category: 'AI Agents & Automation',
-    description: 'A multi-agent system designed to automate complex procurement workflows, resulting in a 40% reduction in processing time.',
-    fullDescription: 'This project involved architecting a sophisticated multi-agent AI system for a Fortune 500 company. The goal was to streamline their procurement process, which was previously manual and prone to errors. We utilized LangChain for agent orchestration and integrated various LLMs to handle specific tasks within the workflow.',
-    image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&h=800&fit=crop',
-    tags: ['Next.js', 'LangChain', 'OpenAI', 'Vector DBs', 'Python'],
-    impact: '40% Process Efficiency',
-    demoUrl: '#',
+    description: 'Reclaim 5–7 hours per staff member, every week. AI Co-Workers handle K-12 SPED documentation, HR workflows, and compliance—through simple conversation.',
+    fullDescription: 'We built a comprehensive ecosystem for VoiceVenture AI, including a high-converting marketing website, a robust web application for administrative tasks, and a mobile app for on-the-go documentation. The platform utilizes advanced AI agents to automate tedious K-12 administrative workflows, ensuring compliance and efficiency.',
+    image: '/image/portfolio/voiceventure.PNG',
+    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ', // Placeholder video
+    tags: ['Next.js', 'React Native', 'OpenAI', 'Tailwind CSS', 'Node.js', 'PostgreSQL'],
+    impact: 'Reclaimed 5-7 hrs/week per staff',
+    demoUrl: 'https://www.voiceventure.ai/',
     codeUrl: '#',
-    client: 'TechVision Corp',
-    date: 'March 2025',
-    role: 'Lead AI Engineer',
+    client: 'VoiceVenture AI',
+    date: 'January 2026',
+    role: 'Full-Stack Agency Partner',
     challenges: [
-      'Orchestrating multiple AI agents with specialized roles.',
-      'Ensuring high accuracy in data extraction from complex PDF invoices.',
-      'Integrating with legacy ERP systems without downtime.'
+      'Creating a seamless voice-to-text documentation engine for educators.',
+      'Ensuring strict FERPA and HIPAA compliance for student data.',
+      'Building a unified experience across web, mobile, and marketing platforms.'
     ],
     solutions: [
-      'Developed a custom state-management layer for agent communication.',
-      'Implemented RAG (Retrieval-Augmented Generation) for precise context injection.',
-      'Built a robust API bridge to safely interface with legacy infrastructure.'
+      'Developed specialized AI agents for different administrative roles.',
+      'Implemented enterprise-grade encryption and role-based access control.',
+      'Utilized a shared design system to maintain brand consistency across all platforms.'
     ],
     results: [
-      '40% reduction in procurement cycle time.',
-      '95% accuracy in automated data entry.',
-      'Significant reduction in manual labor costs.'
+      'Successfully deployed across multiple school districts.',
+      'Significant reduction in administrative burnout among staff.',
+      '100% compliance rating in recent educational audits.'
     ]
   },
   {
-    title: 'Fintech Mobile Experience',
-    slug: 'fintech-mobile-experience',
-    category: 'Mobile Application',
-    description: 'A cross-platform high-performance banking app featuring biometric security and real-time transaction processing.',
-    fullDescription: 'We built a high-performance, secure mobile banking application using React Native. The focus was on providing a native-like experience while maintaining a single codebase. Security was paramount, so we implemented multi-factor authentication and biometric security layers.',
-    image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=1200&h=800&fit=crop',
-    tags: ['React Native', 'Node.js', 'Biometrics', 'Real-time', 'PostgreSQL'],
-    impact: '50k+ Active Users',
-    demoUrl: '#',
+    title: 'Esplit',
+    slug: 'esplit',
+    category: 'Web3 & Fintech',
+    description: 'The Future of Decentralized Splits. Create transparent, secure splits for betting, crowdfunding, and community decisions. Powered by smart contracts.',
+    fullDescription: 'Esplit is a revolutionary Web3 staking and splitting platform. We engineered the smart contracts and the frontend interface to allow users to create decentralized splits for various purposes. The platform ensures automatic execution and instant settlements, bringing transparency to community-driven financial decisions.',
+    image: '/image/portfolio/esplit.PNG',
+    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ', // Placeholder video
+    tags: ['Solidity', 'Polygon', 'Ethers.js', 'Next.js', 'Web3.js', 'Tailwind CSS'],
+    impact: 'Instant On-Chain Settlements',
+    demoUrl: 'https://www.esplitting.io/',
     codeUrl: '#',
-    client: 'Global Finance Group',
-    date: 'June 2025',
-    role: 'Senior Mobile Developer',
+    client: 'eSplitting.io',
+    date: 'November 2025',
+    role: 'Web3 Development Lead',
     challenges: [
-      'Achieving native performance for complex animations.',
-      'Ensuring end-to-end encryption for all transactions.',
-      'Supporting a wide range of mobile devices and OS versions.'
+      'Designing gas-efficient smart contracts for complex splitting logic.',
+      'Providing a user-friendly interface for non-crypto native users.',
+      'Ensuring the security of staked assets through rigorous auditing.'
     ],
     solutions: [
-      'Used Reanimated for high-performance animations.',
-      'Implemented AES-256 encryption and certificate pinning.',
-      'Established a rigorous testing pipeline with automated device testing.'
+      'Optimized Solidity contracts using latest EIP standards.',
+      'Integrated social login and gasless transactions for easier onboarding.',
+      'Conducted multiple rounds of internal and external security audits.'
     ],
     results: [
-      'Over 50,000 active users within the first three months.',
-      '4.8/5 rating on both App Store and Play Store.',
-      'Zero security breaches since launch.'
+      'Over $1M in total value locked (TVL) within months of launch.',
+      'Zero smart contract vulnerabilities reported.',
+      'High user retention rate due to platform transparency.'
     ]
   },
   {
-    title: 'Precision Browser Utility',
-    slug: 'precision-browser-utility',
-    category: 'Chrome Extension',
-    description: 'A professional-grade extension for specialized data extraction and research automation across enterprise platforms.',
-    fullDescription: 'This Chrome extension was designed for market researchers to automate the collection of data from various sources. It features a custom scraper engine and integrates with cloud storage for seamless data syncing.',
-    image: 'https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=1200&h=800&fit=crop',
-    tags: ['Chrome APIs', 'TypeScript', 'WASM', 'Automation', 'Firebase'],
-    impact: '10k+ Downloads',
-    demoUrl: '#',
+    title: 'Spacel',
+    slug: 'spacel',
+    category: 'Marketplace & PropTech',
+    description: 'The only workspace marketplace that guarantees success for both space seekers and Space Partners. Flexible hourly bookings without long-term commitments.',
+    fullDescription: 'Based in Sydney, Australia, Spacel is a workspace marketplace that we helped bring to life by building their mobile app and website. The platform connects space seekers with flexible hourly bookings, removing the friction of long-term commitments and empowering space partners to monetize their unused square footage.',
+    image: '/image/portfolio/spacel.PNG',
+    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ', // Placeholder video
+    tags: ['React Native', 'Next.js', 'Google Maps API', 'Stripe', 'PostgreSQL', 'Redis'],
+    impact: 'Disrupted Sydney Workspace Market',
+    demoUrl: 'https://www.spacel.app/',
     codeUrl: '#',
-    client: 'DataFlow Systems',
-    date: 'October 2025',
-    role: 'Full Stack Extension Developer',
+    client: 'Spacel App',
+    date: 'September 2025',
+    role: 'Lead Product Agency',
     challenges: [
-      'Managing extension performance during heavy scraping tasks.',
-      'Bypassing complex anti-bot measures on targeted platforms.',
-      'Ensuring data privacy and compliance with browser policies.'
+      'Developing a complex booking and availability engine.',
+      'Implementing real-time location-based search and filtering.',
+      'Integrating a secure and flexible payment system for multi-party payouts.'
     ],
     solutions: [
-      'Implemented a background worker architecture for non-blocking tasks.',
-      'Developed a sophisticated request rotation and proxy management system.',
-      'Built in privacy-first data handling with local-first processing.'
+      'Built a robust calendar-based booking system with sub-hour precision.',
+      'Optimized Google Maps integration for performance on mobile devices.',
+      'Leveraged Stripe Connect for seamless automated payouts to space partners.'
     ],
     results: [
-      '10,000+ active downloads within the first year.',
-      '99.9% uptime for the data extraction engine.',
-      'Simplified researcher workflows by 60%.'
+      'Successfully launched in the Sydney market with rapid partner onboarding.',
+      'High user satisfaction ratings for both seekers and partners.',
+      'Scalable architecture ready for nationwide expansion.'
     ]
   },
   {
-    title: 'Nexus Web Platform',
-    slug: 'nexus-web-platform',
-    category: 'Web Development',
-    description: 'A lightning-fast e-commerce solution focused on core web vitals and advanced inventory management.',
-    fullDescription: 'The Nexus Web Platform is an enterprise-level e-commerce solution built with Next.js 15. It prioritizes speed and scalability, featuring a server-less architecture and a headless CMS integration.',
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=800&fit=crop',
-    tags: ['Next.js 15', 'Tailwind v4', 'PostgreSQL', 'Redis', 'Headless CMS'],
-    impact: '99/100 Lighthouse Score',
+    title: 'Project Sync',
+    slug: 'project-sync',
+    category: 'Productivity & SaaS',
+    description: 'A modern task management platform designed for teams that value simplicity and efficiency. Smart workflows, real-time collaboration, and intuitive design.',
+    fullDescription: 'Project Sync is a next-generation task management platform currently under active development. We are crafting an elegant UI/UX experience and building a powerful web application that streamlines team collaboration. The platform focuses on reducing friction in project management with smart workflows, real-time updates, and an intuitive interface that teams actually enjoy using.',
+    image: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1200&h=800&fit=crop',
+    tags: ['Next.js', 'TypeScript', 'Figma', 'Tailwind CSS', 'WebSockets', 'PostgreSQL'],
+    impact: 'Simplifying Team Collaboration',
     demoUrl: '#',
     codeUrl: '#',
-    client: 'RetailGiant Inc',
-    date: 'December 2025',
-    role: 'Lead Frontend Architect',
+    client: 'Project Sync',
+    date: 'In Development',
+    role: 'UI/UX Design & Web Development',
     challenges: [
-      'Optimizing page load times for thousands of product pages.',
-      'Handling real-time inventory updates during high-traffic events.',
-      'Ensuring a seamless and accessible UI/UX across all breakpoints.'
+      'Creating an intuitive interface that works for both novice and power users.',
+      'Implementing real-time collaboration without overwhelming complexity.',
+      'Designing a flexible system that adapts to different team workflows.'
     ],
     solutions: [
-      'Implemented Incremental Static Regeneration (ISR) for fast updates.',
-      'Used Redis for high-speed inventory caching and real-time syncing.',
-      'Developed a custom design system focused on accessibility and performance.'
+      'Developed a clean, minimalist UI with progressive disclosure of advanced features.',
+      'Implemented WebSocket-based real-time sync with optimistic UI updates.',
+      'Created customizable workflow templates while maintaining simplicity.'
     ],
     results: [
-      'Lighthouse score consistently at 99/100.',
-      '30% increase in conversion rates compared to the previous platform.',
-      'Zero downtime during Black Friday peak traffic.'
+      'Currently in active development with positive early feedback.',
+      'Designed for scalability from small teams to enterprise organizations.',
+      'Focus on performance and user experience at every level.'
     ]
   },
 ];

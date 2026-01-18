@@ -185,13 +185,13 @@ export default function ProjectsSection() {
           <h4 className="text-xl font-light tracking-tight text-white/80 max-w-lg mx-auto">
             Ready to build your next breakthrough project?
           </h4>
-          <a
-            href="#contact"
+          <Link
+            href="/projects"
             className="group inline-flex items-center gap-4 rounded-full border border-white/10 bg-white/5 px-8 py-4 text-sm font-light tracking-tight text-white backdrop-blur-sm transition-all duration-500 hover:bg-white hover:text-black hover:scale-105"
           >
-            Start a Collaboration
+            Explore All Projects
             <ArrowRight size={18} className="transition-transform duration-500 group-hover:translate-x-2" />
-          </a>
+          </Link>
         </div>
       </div>
     </SectionContainer>

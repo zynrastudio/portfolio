@@ -4,22 +4,22 @@ import { Github, Linkedin, Twitter, Mail } from 'lucide-react';
 
 const footerLinks = {
   quickLinks: [
-    { label: 'About', href: '#about' },
-    { label: 'Skills', href: '#skills' },
-    { label: 'Projects', href: '#projects' },
-    { label: 'Contact', href: '#contact' },
+    { label: 'About', href: '/about' },
+    { label: 'Services', href: '/services' },
+    { label: 'Projects', href: '/projects' },
+    { label: 'Contact', href: '/contact' },
   ],
   specializations: [
     { label: 'Web Development' },
     { label: 'Mobile Apps' },
-    { label: 'Chrome Extensions' },
-    { label: 'AI Agents' },
+    { label: 'UI/UX Design' },
+    { label: 'Consulting' },
   ],
   social: [
-    { label: 'GitHub', href: 'https://github.com', icon: Github },
-    { label: 'LinkedIn', href: 'https://linkedin.com', icon: Linkedin },
-    { label: 'Twitter', href: 'https://twitter.com', icon: Twitter },
-    { label: 'Email', href: 'mailto:bright@example.com', icon: Mail },
+    { label: 'GitHub', href: 'https://github.com/zynrastudio', icon: Github },
+    { label: 'LinkedIn', href: 'https://linkedin.com/company/zynrastudio', icon: Linkedin },
+    { label: 'Twitter', href: 'https://twitter.com/zynrastudio', icon: Twitter },
+    { label: 'Email', href: 'mailto:hi@zynra.studio', icon: Mail },
   ],
 };
 
@@ -27,9 +27,14 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    if (href.startsWith('#')) {
+    // Only handle hash links
+    if (href.startsWith('#') || href.includes('/#')) {
       e.preventDefault();
-      const element = document.querySelector(href);
+      
+      // Extract the hash from the href
+      const hash = href.includes('/#') ? href.split('/#')[1] : href.substring(1);
+      const element = document.querySelector(`#${hash}`);
+      
       if (element) {
         const offset = 80;
         const elementPosition = element.getBoundingClientRect().top;
@@ -41,6 +46,7 @@ export default function Footer() {
         });
       }
     }
+    // For regular routes, let Next.js handle navigation
   };
 
   return (
@@ -50,7 +56,7 @@ export default function Footer() {
           {/* Brand & Copyright */}
           <div className="flex flex-col items-center md:items-start gap-2">
             <h2 className="text-lg font-light tracking-tighter text-white">
-              Bright <span className="font-extralight text-white/50">Akolade</span>
+              Zynra <span className="font-extralight text-white/50">Studio</span>
             </h2>
             <p className="text-[10px] font-extralight uppercase tracking-[0.2em] text-white/30">
               © {currentYear} — All Rights Reserved.
@@ -82,7 +88,7 @@ export default function Footer() {
           {/* Minimalist Tagline */}
           <div className="hidden lg:block">
             <span className="text-[10px] font-extralight uppercase tracking-[0.3em] text-white/20">
-              Design Driven Engineering
+              Elegant Digital Solutions
             </span>
           </div>
         </div>

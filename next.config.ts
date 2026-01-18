@@ -11,6 +11,14 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  // Site configuration
+  env: {
+    SITE_URL: process.env.SITE_URL || 'https://zynra.studio',
+  },
+  // Enable strict mode for better error handling
+  reactStrictMode: true,
+  // Optimize production builds
+  poweredByHeader: false,
 };
 
 export default nextConfig;

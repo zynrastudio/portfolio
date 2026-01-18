@@ -14,26 +14,26 @@ const contactMethods = [
   {
     icon: Mail,
     label: 'Email',
-    value: 'bright@example.com',
-    href: 'mailto:bright@example.com',
+    value: 'hi@zynra.studio',
+    href: 'mailto:hi@zynra.studio',
   },
   {
     icon: Github,
     label: 'GitHub',
-    value: '@brightakolade',
-    href: 'https://github.com',
+    value: '@zynrastudio',
+    href: 'https://github.com/zynrastudio',
   },
   {
     icon: Linkedin,
     label: 'LinkedIn',
-    value: 'Bright Akolade',
-    href: 'https://linkedin.com',
+    value: 'Zynra Studio',
+    href: 'https://linkedin.com/company/zynrastudio',
   },
   {
     icon: Twitter,
     label: 'Twitter',
-    value: '@brightakolade',
-    href: 'https://twitter.com',
+    value: '@zynrastudio',
+    href: 'https://twitter.com/zynrastudio',
   },
 ];
 
@@ -44,11 +44,7 @@ export default function ContactSection() {
   useEffect(() => {
     (async function () {
       const cal = await getCalApi({"namespace":"30min"});
-      cal("ui", {
-        "hideEventTypeDetails": false,
-        "layout": "month_view",
-        "theme": "dark"
-      });
+      cal("ui", {"hideEventTypeDetails":false,"layout":"month_view"});
     })();
   }, []);
 
@@ -105,11 +101,10 @@ export default function ContactSection() {
           <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
           
           <div className="min-h-[600px] w-full">
-            <Cal 
-              namespace="30min"
-              calLink="abdulqoyum-raji-uqbt2g/30min"
-              style={{ width: "100%", height: "100%", minHeight: "600px" }}
-              config={{ "layout": "month_view", "theme": "dark" }}
+            <Cal namespace="30min"
+              calLink="zynra.studio/30min"
+              style={{width:"100%",height:"100%",overflow:"scroll"}}
+              config={{"layout":"month_view"}}
             />
           </div>
         </div>
