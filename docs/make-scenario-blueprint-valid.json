@@ -1,0 +1,18 @@
+{
+  "flow": [
+    {
+      "id": 1,
+      "module": "notion:watchDatabasesPages",
+      "version": 1,
+      "parameters": {},
+      "mapper": {
+        "select": "data_source",
+        "limit": 2
+      }
+    }
+  ],
+  "metadata": {
+    "name": "Notion Lead Status → Gmail Draft Automation",
+    "description": "Monitors Notion Leads database for status changes. When status changes to 'Qualified' or 'Unqualified', generates HTML emails using templates from Notion and creates Gmail drafts for manual review."
+  }
+}

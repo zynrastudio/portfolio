@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server"
 import { Resend } from "resend"
 import { quoteSchema } from "@/lib/types/quote"
 import { generateAcknowledgmentEmail } from "@/lib/email-templates"
+import { createLeadRecord } from "@/lib/notion-client"
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 
@@ -72,6 +73,16 @@ This email was sent from your portfolio contact form.
         { error: "Failed to send email", details: error },
         { status: 500 }
       )
+    }
+
+    // Create Notion lead record (don't fail if this fails - the main email was sent)
+    if (process.env.NOTION_LEADS_DATABASE_ID) {
+      try {
+        await createLeadRecord(data, process.env.NOTION_LEADS_DATABASE_ID)
+      } catch (notionError) {
+        // Log the error but don't fail the request
+        console.error("Failed to create Notion record:", notionError)
+      }
     }
 
     // Generate acknowledgment email (HTML + plain text)

@@ -1,0 +1,169 @@
+{
+  "name": "Notion Lead Status → Gmail Draft Automation",
+  "description": "Monitors Notion Leads database for status changes. When status changes to 'Qualified' or 'Unqualified', generates HTML emails using templates from Notion and creates Gmail drafts for manual review.",
+  "modules": [
+    {
+      "id": 1,
+      "type": "trigger",
+      "module": "notion:watchDatabasesPages",
+      "label": "Watch Leads Database",
+      "description": "Triggers when a lead's status changes to Qualified or Unqualified",
+      "parameters": {
+        "databaseId": "{{NOTION_LEADS_DATABASE_ID}}",
+        "filter": {
+          "property": "Status",
+          "select": {
+            "equals": ["Qualified", "Unqualified"]
+          }
+        }
+      }
+    },
+    {
+      "id": 2,
+      "type": "router",
+      "module": "flowControl:router",
+      "label": "Route by Status",
+      "description": "Routes to Welcome or Rejection email path based on status",
+      "routes": [
+        {
+          "label": "Qualified → Welcome Email",
+          "filter": "{{1.Status}} = 'Qualified'"
+        },
+        {
+          "label": "Unqualified → Rejection Email",
+          "filter": "{{1.Status}} = 'Unqualified'"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "type": "action",
+      "module": "notion:searchObjects1",
+      "label": "Get Welcome Template",
+      "description": "Fetches the Welcome email template from Email Templates database",
+      "route": "Qualified → Welcome Email",
+      "parameters": {
+        "databaseId": "{{NOTION_EMAIL_TEMPLATES_DATABASE_ID}}",
+        "filter": {
+          "property": "Type",
+          "select": {
+            "equals": "Welcome"
+          }
+        },
+        "pageSize": 1
+      }
+    },
+    {
+      "id": 4,
+      "type": "action",
+      "module": "tools:setVariables",
+      "label": "Generate Welcome Email HTML",
+      "description": "Replaces template variables with lead data and generates HTML email",
+      "route": "Qualified → Welcome Email",
+      "parameters": {
+        "variables": [
+          {
+            "name": "emailHtml",
+            "value": "{{replace template variables in 3.HTML Template}}"
+          },
+          {
+            "name": "emailSubject",
+            "value": "{{replace variables in 3.Subject}}"
+          }
+        ]
+      }
+    },
+    {
+      "id": 5,
+      "type": "action",
+      "module": "gmail:createADraft",
+      "label": "Create Welcome Email Draft",
+      "description": "Creates Gmail draft with welcome email",
+      "route": "Qualified → Welcome Email",
+      "parameters": {
+        "to": "{{1.Email}}",
+        "subject": "{{4.emailSubject}}",
+        "body": "{{4.emailHtml}}",
+        "format": "html"
+      }
+    },
+    {
+      "id": 6,
+      "type": "action",
+      "module": "notion:searchObjects1",
+      "label": "Get Rejection Template",
+      "description": "Fetches the Rejection email template from Email Templates database",
+      "route": "Unqualified → Rejection Email",
+      "parameters": {
+        "databaseId": "{{NOTION_EMAIL_TEMPLATES_DATABASE_ID}}",
+        "filter": {
+          "property": "Type",
+          "select": {
+            "equals": "Rejection"
+          }
+        },
+        "pageSize": 1
+      }
+    },
+    {
+      "id": 7,
+      "type": "action",
+      "module": "tools:setVariables",
+      "label": "Generate Rejection Email HTML",
+      "description": "Replaces template variables with lead data and generates HTML email",
+      "route": "Unqualified → Rejection Email",
+      "parameters": {
+        "variables": [
+          {
+            "name": "emailHtml",
+            "value": "{{replace template variables in 6.HTML Template}}"
+          },
+          {
+            "name": "emailSubject",
+            "value": "{{replace variables in 6.Subject}}"
+          }
+        ]
+      }
+    },
+    {
+      "id": 8,
+      "type": "action",
+      "module": "gmail:createADraft",
+      "label": "Create Rejection Email Draft",
+      "description": "Creates Gmail draft with rejection email",
+      "route": "Unqualified → Rejection Email",
+      "parameters": {
+        "to": "{{1.Email}}",
+        "subject": "{{7.emailSubject}}",
+        "body": "{{7.emailHtml}}",
+        "format": "html"
+      }
+    },
+    {
+      "id": 9,
+      "type": "action",
+      "module": "notion:updateADatabaseItem",
+      "label": "Update Lead Record",
+      "description": "Updates Notion lead record with draft status and Gmail draft ID",
+      "parameters": {
+        "databaseId": "{{NOTION_LEADS_DATABASE_ID}}",
+        "itemId": "{{1.id}}",
+        "properties": {
+          "Email Draft Created": {
+            "checkbox": true
+          },
+          "Draft Email ID": {
+            "rich_text": "{{5.id or 8.id}}"
+          }
+        }
+      }
+    }
+  ],
+  "notes": [
+    "Module 4 and 7 will need to use Make.com's Text Parser or Code module to replace template variables",
+    "Template variables to replace: {name}, {service}, {company}, {budgetRange}, {timeline}, {message}, {schedulingLink}, {reason}",
+    "Gmail connection must be set up in Make.com before this scenario can run",
+    "The HTML templates should be stored in the Email Templates database in Notion",
+    "Error handling: If template not found or Gmail fails, log error but don't block workflow"
+  ]
+}
