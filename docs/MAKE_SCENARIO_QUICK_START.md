@@ -128,7 +128,7 @@
 - App: Tools
 - Module: Code
 - Language: JavaScript
-- See code in `docs/MAKE_SCENARIO_CREATION_GUIDE.md` (Module 5B)
+- See code in `docs/make-scenarios/01-gmail-draft-automation.md` (Module 4B)
 
 **Module 10: Create Gmail Draft**
 - App: Google Email
@@ -193,7 +193,7 @@
 - ✅ All processing happens on your server
 - ✅ Easier to maintain and debug
 
-See `docs/MAKE_SCENARIO_CREATION_GUIDE.md` for detailed HTTP module configuration.
+See `docs/make-scenarios/01-gmail-draft-automation.md` for detailed HTTP module configuration.
 
 ## Testing
 

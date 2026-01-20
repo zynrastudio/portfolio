@@ -1,0 +1,39 @@
+{
+  "defaultIssues": [
+    {
+      "title": "Kickoff & Onboarding",
+      "description": "Initial project setup, team introductions, and onboarding tasks. Establish communication channels and project management workflows.",
+      "priority": "high"
+    },
+    {
+      "title": "Discovery Recap",
+      "description": "Document and consolidate insights from the discovery call. Create project brief and align on scope, timeline, and deliverables.",
+      "priority": "high"
+    },
+    {
+      "title": "Milestone 1",
+      "description": "First major milestone. Specific deliverables to be determined based on project scope and requirements.",
+      "priority": "medium"
+    },
+    {
+      "title": "Milestone 2",
+      "description": "Second major milestone. Specific deliverables to be determined based on project scope and requirements.",
+      "priority": "medium"
+    },
+    {
+      "title": "QA & Review",
+      "description": "Quality assurance phase. Testing, review, and refinement of deliverables before client handover.",
+      "priority": "high"
+    },
+    {
+      "title": "Handover",
+      "description": "Final project handover. Deliver all assets, documentation, and provide training or support as needed.",
+      "priority": "high"
+    }
+  ],
+  "projectDefaults": {
+    "status": "Planned",
+    "team": "Delivery",
+    "description": "Project created automatically from Notion lead status change."
+  }
+}

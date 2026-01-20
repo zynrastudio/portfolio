@@ -1,5 +1,6 @@
 import { Client } from "@notionhq/client"
 import type { QuoteFormData } from "./types/quote"
+import type { BlockObjectRequest } from "@notionhq/client/build/src/api-endpoints"
 
 export interface EmailTemplate {
   id: string
@@ -429,6 +430,164 @@ export async function updateLeadDraftStatus(
     })
   } catch (error) {
     console.error("Notion API error updating draft status:", error)
+    throw error
+  }
+}
+
+/**
+ * Creates a contract page in Notion with the provided HTML content
+ * @param contractHtml - The rendered HTML contract
+ * @param contractData - Contract metadata (client name, project name, etc.)
+ * @param parentPageId - Optional parent page ID. If not provided, creates a standalone page
+ * @returns The Notion page URL
+ */
+export async function createContractPage(
+  contractHtml: string,
+  contractData: {
+    clientName: string
+    companyName?: string
+    projectName: string
+  },
+  parentPageId?: string
+): Promise<string> {
+  if (!process.env.NOTION_API_KEY) {
+    throw new Error("NOTION_API_KEY is not configured")
+  }
+
+  const notion = new Client({
+    auth: process.env.NOTION_API_KEY,
+  })
+
+  try {
+    // Determine parent - use provided parentPageId or workspace
+    const parent: { type: "page_id"; page_id: string } | { type: "workspace"; workspace: true } = parentPageId
+      ? { type: "page_id" as const, page_id: parentPageId }
+      : { type: "workspace" as const, workspace: true as const }
+
+    // Create the page with title
+    const pageTitle = `Contract - ${contractData.projectName} - ${contractData.clientName}`
+    const page = await notion.pages.create({
+      parent,
+      properties: {
+        title: {
+          title: [
+            {
+              text: {
+                content: pageTitle,
+              },
+            },
+          ],
+        },
+      },
+    })
+
+    // Add contract content as HTML in code blocks
+    // Split HTML into chunks (Notion has 2000 char limit per code block)
+    const chunkSize = 1900 // Leave buffer
+    const htmlChunks: BlockObjectRequest[] = []
+
+    // Add header
+    const headerBlocks: BlockObjectRequest[] = [
+      {
+        object: "block",
+        type: "heading_1",
+        heading_1: {
+          rich_text: [
+            {
+              text: {
+                content: "Service Agreement",
+              },
+            },
+          ],
+        },
+      },
+      {
+        object: "block",
+        type: "paragraph",
+        paragraph: {
+          rich_text: [
+            {
+              text: {
+                content: `Contract for ${contractData.clientName}${contractData.companyName ? ` (${contractData.companyName})` : ""} - ${contractData.projectName}`,
+              },
+            },
+          ],
+        },
+      },
+      {
+        object: "block",
+        type: "divider",
+        divider: {},
+      },
+      {
+        object: "block",
+        type: "heading_2",
+        heading_2: {
+          rich_text: [
+            {
+              text: {
+                content: "Contract Document",
+              },
+            },
+          ],
+        },
+      },
+      {
+        object: "block",
+        type: "paragraph",
+        paragraph: {
+          rich_text: [
+            {
+              text: {
+                content: "The contract HTML is provided below. You can copy this HTML and view it in a browser, or use it to generate a PDF.",
+              },
+            },
+          ],
+        },
+      },
+    ]
+
+    // Split HTML into chunks
+    for (let i = 0; i < contractHtml.length; i += chunkSize) {
+      htmlChunks.push({
+        object: "block",
+        type: "code",
+        code: {
+          rich_text: [
+            {
+              text: {
+                content: contractHtml.substring(i, i + chunkSize),
+              },
+            },
+          ],
+          language: "html",
+        },
+      })
+    }
+
+    const children: BlockObjectRequest[] = [
+      ...headerBlocks,
+      ...htmlChunks,
+    ]
+
+    // Append blocks in batches (Notion API limit is 100 blocks per request)
+    const batchSize = 100
+    for (let i = 0; i < children.length; i += batchSize) {
+      await notion.blocks.children.append({
+        block_id: page.id,
+        children: children.slice(i, i + batchSize),
+      })
+    }
+
+    // Get the shareable URL
+    // Notion page URLs are in format: https://notion.so/{page_id}
+    // We need to convert the page ID to the proper format
+    const pageIdFormatted = page.id.replace(/-/g, "")
+    const notionUrl = `https://notion.so/${pageIdFormatted}`
+
+    return notionUrl
+  } catch (error) {
+    console.error("Notion API error creating contract page:", error)
     throw error
   }
 }

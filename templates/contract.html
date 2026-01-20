@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Agreement - {{projectName}}</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #1a1a1a;
+            border-bottom: 3px solid #0066cc;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+        h2 {
+            color: #333;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+        .header-info {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 4px;
+            margin-bottom: 30px;
+        }
+        .info-row {
+            margin-bottom: 10px;
+        }
+        .info-label {
+            font-weight: 600;
+            color: #666;
+            display: inline-block;
+            width: 150px;
+        }
+        .info-value {
+            color: #1a1a1a;
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        .section-content {
+            margin-left: 20px;
+            line-height: 1.8;
+        }
+        .signature-section {
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 2px solid #e0e0e0;
+        }
+        .signature-block {
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+        .signature-line {
+            border-top: 1px solid #333;
+            width: 300px;
+            margin-top: 60px;
+        }
+        .signature-label {
+            margin-top: 5px;
+            font-size: 0.9em;
+            color: #666;
+        }
+        .footer {
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+            font-size: 0.9em;
+            color: #666;
+            text-align: center;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Service Agreement</h1>
+        
+        <div class="header-info">
+            <div class="info-row">
+                <span class="info-label">Client Name:</span>
+                <span class="info-value">{{clientName}}</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Company:</span>
+                <span class="info-value">{{companyName}}</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Project:</span>
+                <span class="info-value">{{projectName}}</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Start Date:</span>
+                <span class="info-value">{{startDate}}</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Total Fee:</span>
+                <span class="info-value highlight">${{fee}}</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Payment Terms:</span>
+                <span class="info-value">{{paymentTerms}}</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>1. Scope of Work</h2>
+            <div class="section-content">
+                {{scopeSummary}}
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>2. Payment Terms</h2>
+            <div class="section-content">
+                <p>Total project fee: <strong>${{fee}}</strong></p>
+                <p>Payment schedule: <strong>{{paymentTerms}}</strong></p>
+                <p>All payments are due within 14 days of invoice date. Late payments may incur a 5% monthly interest charge.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>3. Timeline</h2>
+            <div class="section-content">
+                <p>Project start date: <strong>{{startDate}}</strong></p>
+                <p>Timeline and milestones will be established during the project kickoff meeting and documented in the project management system.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>4. Deliverables</h2>
+            <div class="section-content">
+                <p>All project deliverables will be specified in the project plan and communicated through our project management system. Deliverables will be provided in agreed-upon formats and are subject to client review and approval.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>5. Revisions and Changes</h2>
+            <div class="section-content">
+                <p>This agreement includes up to 2 rounds of revisions per deliverable. Additional revisions or significant scope changes will be billed at our standard hourly rate of $150/hour and require written approval before work begins.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>6. Intellectual Property</h2>
+            <div class="section-content">
+                <p>Upon full payment, all final deliverables and work product created specifically for this project will become the property of the client. Zynra Studio retains the right to use project work for portfolio and marketing purposes unless otherwise agreed in writing.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>7. Confidentiality</h2>
+            <div class="section-content">
+                <p>Both parties agree to maintain confidentiality of all proprietary information shared during the course of this project. This agreement remains in effect indefinitely.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>8. Termination</h2>
+            <div class="section-content">
+                <p>Either party may terminate this agreement with 14 days written notice. Upon termination, client will pay for all work completed up to the termination date, and all work product will be delivered as-is.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>9. Limitation of Liability</h2>
+            <div class="section-content">
+                <p>Zynra Studio's total liability under this agreement shall not exceed the total project fee. We are not liable for any indirect, incidental, or consequential damages.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>10. Governing Law</h2>
+            <div class="section-content">
+                <p>This agreement shall be governed by and construed in accordance with the laws of the jurisdiction in which Zynra Studio operates.</p>
+            </div>
+        </div>
+
+        <div class="signature-section">
+            <h2>Agreement</h2>
+            <p>By signing below, both parties agree to the terms and conditions outlined in this Service Agreement.</p>
+            
+            <div class="signature-block">
+                <div>
+                    <div class="signature-line"></div>
+                    <div class="signature-label">Client Signature</div>
+                    <div class="signature-label">{{clientName}}</div>
+                    <div class="signature-label">{{companyName}}</div>
+                    <div class="signature-label" style="margin-top: 10px;">Date: _______________</div>
+                </div>
+            </div>
+
+            <div class="signature-block">
+                <div>
+                    <div class="signature-line"></div>
+                    <div class="signature-label">Zynra Studio</div>
+                    <div class="signature-label">Authorized Representative</div>
+                    <div class="signature-label" style="margin-top: 10px;">Date: _______________</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>This agreement was generated on {{currentDate}}.</p>
+            <p>Zynra Studio | zynra.studio</p>
+        </div>
+    </div>
+</body>
+</html>
