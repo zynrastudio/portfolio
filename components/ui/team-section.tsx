@@ -9,7 +9,7 @@ const teamMembers = [
   {
     name: 'Bright Akolade',
     role: 'Founder & Lead Engineer',
-    avatar: '/image/team/brightakolade.png',
+    avatar: '/image/team/bright.jpeg',
     socials: {
       github: 'https://github.com/brightakolade',
       linkedin: 'https://linkedin.com/in/brightakolade',
@@ -19,7 +19,7 @@ const teamMembers = [
   {
     name: 'Michael Brum',
     role: 'Co-Founder & Creative Director',
-    avatar: '/image/team/Michael.jpeg',
+    avatar: '/image/team/michale.jpeg',
     socials: {
       github: 'https://github.com/michaelbrum',
       linkedin: 'https://linkedin.com/in/michaelbrum',

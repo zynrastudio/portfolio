@@ -30,6 +30,45 @@ interface QuoteDialogProps {
   children: React.ReactNode
 }
 
+// Helper function to play success sound using Web Audio API
+const playSuccessSound = () => {
+  if (typeof window === "undefined") return
+
+  try {
+    // Type for webkit prefixed AudioContext
+    const AudioContextClass = window.AudioContext || (window as typeof window & { webkitAudioContext: typeof AudioContext }).webkitAudioContext
+    const audioContext = new AudioContextClass()
+    
+    // Create a pleasant two-tone success sound
+    const playTone = (frequency: number, startTime: number, duration: number, volume: number = 0.15) => {
+      const oscillator = audioContext.createOscillator()
+      const gainNode = audioContext.createGain()
+      
+      oscillator.connect(gainNode)
+      gainNode.connect(audioContext.destination)
+      
+      oscillator.frequency.value = frequency
+      oscillator.type = "sine"
+      
+      // Envelope for smooth sound
+      gainNode.gain.setValueAtTime(0, startTime)
+      gainNode.gain.linearRampToValueAtTime(volume, startTime + 0.01)
+      gainNode.gain.exponentialRampToValueAtTime(0.01, startTime + duration)
+      
+      oscillator.start(startTime)
+      oscillator.stop(startTime + duration)
+    }
+    
+    // Play two pleasant tones (C and E notes creating a major third interval)
+    const now = audioContext.currentTime
+    playTone(523.25, now, 0.15) // C5
+    playTone(659.25, now + 0.08, 0.2) // E5
+    
+  } catch (error) {
+    console.log("Could not play success sound:", error)
+  }
+}
+
 export function QuoteDialog({ service, children }: QuoteDialogProps) {
   const [open, setOpen] = React.useState(false)
   const [isSubmitting, setIsSubmitting] = React.useState(false)
@@ -80,6 +119,9 @@ export function QuoteDialog({ service, children }: QuoteDialogProps) {
 
       setSubmitStatus("success")
       reset()
+      
+      // Play success sound
+      playSuccessSound()
       
       // Close dialog after 2 seconds
       setTimeout(() => {
