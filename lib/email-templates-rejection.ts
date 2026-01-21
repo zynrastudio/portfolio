@@ -27,21 +27,21 @@ export function generateRejectionEmailTemplate(
   </style>
   <![endif]-->
 </head>
-<body style="margin: 0; padding: 0; background-color: #0a0a0a; font-family: Arial, Helvetica, sans-serif;">
-  <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color: #0a0a0a;">
+<body style="margin: 0; padding: 0; background-color: #ffffff; font-family: Arial, Helvetica, sans-serif;">
+  <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color: #ffffff;">
     <tr>
       <td align="center" style="padding: 40px 20px;">
         <!-- Main Container -->
-        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" style="max-width: 600px; margin: 0 auto; background-color: #0a0a0a;">
+        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" style="max-width: 600px; margin: 0 auto; background-color: #ffffff;">
           
           <!-- Header -->
           <tr>
-            <td style="padding: 0 0 40px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
+            <td style="padding: 0 0 40px 0; border-bottom: 1px solid rgba(0, 0, 0, 0.1);">
               <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
                 <tr>
                   <td>
-                    <h1 style="margin: 0; font-size: 24px; font-weight: 300; letter-spacing: -0.5px; color: #ffffff; line-height: 1.2;">
-                      Zynra <span style="font-weight: 200; color: rgba(255, 255, 255, 0.5);">Studio</span>
+                    <h1 style="margin: 0; font-size: 24px; font-weight: 300; letter-spacing: -0.5px; color: #000000; line-height: 1.2;">
+                      Zynra <span style="font-weight: 200; color: rgba(0, 0, 0, 0.4);">Studio</span>
                     </h1>
                   </td>
                 </tr>
@@ -52,7 +52,7 @@ export function generateRejectionEmailTemplate(
           <!-- Greeting -->
           <tr>
             <td style="padding: 40px 0 24px 0;">
-              <p style="margin: 0; font-size: 18px; font-weight: 300; color: #ffffff; line-height: 1.6; letter-spacing: -0.2px;">
+              <p style="margin: 0; font-size: 18px; font-weight: 300; color: #000000; line-height: 1.6; letter-spacing: -0.2px;">
                 Hi ${escapeHtml(name)},
               </p>
             </td>
@@ -61,7 +61,7 @@ export function generateRejectionEmailTemplate(
           <!-- Thank You Message -->
           <tr>
             <td style="padding: 0 0 32px 0;">
-              <p style="margin: 0; font-size: 16px; font-weight: 300; color: rgba(255, 255, 255, 0.8); line-height: 1.7; letter-spacing: -0.1px;">
+              <p style="margin: 0; font-size: 16px; font-weight: 300; color: rgba(0, 0, 0, 0.8); line-height: 1.7; letter-spacing: -0.1px;">
                 Thank you for taking the time to reach out to Zynra Studio and for your interest in working with us. We truly appreciate you considering us for your project.
               </p>
             </td>
@@ -70,13 +70,13 @@ export function generateRejectionEmailTemplate(
           <!-- Rejection Message -->
           <tr>
             <td style="padding: 0 0 32px 0;">
-              <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; overflow: hidden;">
+              <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color: rgba(0, 0, 0, 0.02); border: 1px solid rgba(0, 0, 0, 0.1); border-radius: 12px; overflow: hidden;">
                 <tr>
                   <td style="padding: 32px;">
-                    <p style="margin: 0 0 20px 0; font-size: 11px; font-weight: 300; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(255, 255, 255, 0.4);">
+                    <p style="margin: 0 0 20px 0; font-size: 11px; font-weight: 300; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(0, 0, 0, 0.4);">
                       Our Decision
                     </p>
-                    <p style="margin: 0; font-size: 16px; font-weight: 300; color: rgba(255, 255, 255, 0.8); line-height: 1.7; letter-spacing: -0.1px;">
+                    <p style="margin: 0; font-size: 16px; font-weight: 300; color: rgba(0, 0, 0, 0.8); line-height: 1.7; letter-spacing: -0.1px;">
                       After careful consideration, we've decided that we're not the right fit for your project at this time.${reason ? ` ${escapeHtml(reason)}` : " We appreciate your understanding."}
                     </p>
                   </td>
@@ -88,7 +88,7 @@ export function generateRejectionEmailTemplate(
           <!-- Thank You & Closing -->
           <tr>
             <td style="padding: 0 0 32px 0;">
-              <p style="margin: 0; font-size: 16px; font-weight: 300; color: rgba(255, 255, 255, 0.8); line-height: 1.7; letter-spacing: -0.1px;">
+              <p style="margin: 0; font-size: 16px; font-weight: 300; color: rgba(0, 0, 0, 0.8); line-height: 1.7; letter-spacing: -0.1px;">
                 We wish you the very best with your project and hope you find the perfect partner to bring your vision to life. If your needs change in the future, we'd be happy to hear from you again.
               </p>
             </td>
@@ -96,17 +96,17 @@ export function generateRejectionEmailTemplate(
 
           <!-- Additional Info -->
           <tr>
-            <td style="padding: 0 0 40px 0; border-top: 1px solid rgba(255, 255, 255, 0.1);">
-              <p style="margin: 32px 0 0 0; font-size: 14px; font-weight: 300; color: rgba(255, 255, 255, 0.6); line-height: 1.6;">
-                If you have any questions, feel free to reach out at <a href="mailto:contact@zynra.studio" style="color: #ffffff; text-decoration: underline;">contact@zynra.studio</a>.
+            <td style="padding: 0 0 40px 0; border-top: 1px solid rgba(0, 0, 0, 0.1);">
+              <p style="margin: 32px 0 0 0; font-size: 14px; font-weight: 300; color: rgba(0, 0, 0, 0.6); line-height: 1.6;">
+                If you have any questions, feel free to reach out at <a href="mailto:contact@zynra.studio" style="color: #000000; text-decoration: underline;">contact@zynra.studio</a>.
               </p>
             </td>
           </tr>
 
           <!-- Footer -->
           <tr>
-            <td style="padding: 40px 0 0 0; border-top: 1px solid rgba(255, 255, 255, 0.1);">
-              <p style="margin: 0 0 8px 0; font-size: 15px; font-weight: 300; color: #ffffff; line-height: 1.5;">
+            <td style="padding: 40px 0 0 0; border-top: 1px solid rgba(0, 0, 0, 0.1);">
+              <p style="margin: 0 0 8px 0; font-size: 15px; font-weight: 300; color: #000000; line-height: 1.5;">
                 Best regards,<br>
                 <span style="font-weight: 400;">The Zynra Studio Team</span>
               </p>

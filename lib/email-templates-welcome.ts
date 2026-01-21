@@ -42,21 +42,21 @@ export function generateWelcomeEmailTemplate(
   </style>
   <![endif]-->
 </head>
-<body style="margin: 0; padding: 0; background-color: #0a0a0a; font-family: Arial, Helvetica, sans-serif;">
-  <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color: #0a0a0a;">
+<body style="margin: 0; padding: 0; background-color: #ffffff; font-family: Arial, Helvetica, sans-serif;">
+  <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color: #ffffff;">
     <tr>
       <td align="center" style="padding: 40px 20px;">
         <!-- Main Container -->
-        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" style="max-width: 600px; margin: 0 auto; background-color: #0a0a0a;">
+        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" style="max-width: 600px; margin: 0 auto; background-color: #ffffff;">
           
           <!-- Header -->
           <tr>
-            <td style="padding: 0 0 40px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
+            <td style="padding: 0 0 40px 0; border-bottom: 1px solid rgba(0, 0, 0, 0.1);">
               <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
                 <tr>
                   <td>
-                    <h1 style="margin: 0; font-size: 24px; font-weight: 300; letter-spacing: -0.5px; color: #ffffff; line-height: 1.2;">
-                      Zynra <span style="font-weight: 200; color: rgba(255, 255, 255, 0.5);">Studio</span>
+                    <h1 style="margin: 0; font-size: 24px; font-weight: 300; letter-spacing: -0.5px; color: #000000; line-height: 1.2;">
+                      Zynra <span style="font-weight: 200; color: rgba(0, 0, 0, 0.4);">Studio</span>
                     </h1>
                   </td>
                 </tr>
@@ -67,7 +67,7 @@ export function generateWelcomeEmailTemplate(
           <!-- Greeting -->
           <tr>
             <td style="padding: 40px 0 24px 0;">
-              <p style="margin: 0; font-size: 18px; font-weight: 300; color: #ffffff; line-height: 1.6; letter-spacing: -0.2px;">
+              <p style="margin: 0; font-size: 18px; font-weight: 300; color: #000000; line-height: 1.6; letter-spacing: -0.2px;">
                 Hi ${escapeHtml(name)},
               </p>
             </td>
@@ -76,7 +76,7 @@ export function generateWelcomeEmailTemplate(
           <!-- 1. Personal Acknowledgement -->
           <tr>
             <td style="padding: 0 0 32px 0;">
-              <p style="margin: 0; font-size: 16px; font-weight: 300; color: rgba(255, 255, 255, 0.8); line-height: 1.7; letter-spacing: -0.1px;">
+              <p style="margin: 0; font-size: 16px; font-weight: 300; color: rgba(0, 0, 0, 0.8); line-height: 1.7; letter-spacing: -0.1px;">
                 Thank you for reaching out to Zynra Studio! We're genuinely excited about the opportunity to work with you${company ? ` and ${escapeHtml(company)}` : ""} on your project.
               </p>
             </td>
@@ -85,11 +85,11 @@ export function generateWelcomeEmailTemplate(
           <!-- 2. What You Understood from Their Request -->
           <tr>
             <td style="padding: 0 0 32px 0;">
-              <p style="margin: 0 0 16px 0; font-size: 11px; font-weight: 300; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(255, 255, 255, 0.4);">
+              <p style="margin: 0 0 16px 0; font-size: 11px; font-weight: 300; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(0, 0, 0, 0.4);">
                 What We Understand
               </p>
-              <p style="margin: 0; font-size: 16px; font-weight: 300; color: rgba(255, 255, 255, 0.8); line-height: 1.7; letter-spacing: -0.1px;">
-                Based on your inquiry, you're looking for <strong style="color: #ffffff; font-weight: 400;">${escapeHtml(service)}</strong>${budgetRange && getBudgetLabel ? ` with a budget around ${escapeHtml(getBudgetLabel(budgetRange))}` : ""}${timeline && getTimelineLabel ? ` and a timeline of ${escapeHtml(getTimelineLabel(timeline))}` : ""}.${message ? ` We noted your message about ${escapeHtml(message.substring(0, 100))}${message.length > 100 ? "..." : ""}.` : ""}
+              <p style="margin: 0; font-size: 16px; font-weight: 300; color: rgba(0, 0, 0, 0.8); line-height: 1.7; letter-spacing: -0.1px;">
+                Based on your inquiry, you're looking for <strong style="color: #000000; font-weight: 400;">${escapeHtml(service)}</strong>${budgetRange && getBudgetLabel ? ` with a budget around ${escapeHtml(getBudgetLabel(budgetRange))}` : ""}${timeline && getTimelineLabel ? ` and a timeline of ${escapeHtml(getTimelineLabel(timeline))}` : ""}.${message ? ` We noted your message about ${escapeHtml(message.substring(0, 100))}${message.length > 100 ? "..." : ""}.` : ""}
               </p>
             </td>
           </tr>
@@ -97,10 +97,10 @@ export function generateWelcomeEmailTemplate(
           <!-- 3. What the Call Will Clarify -->
           <tr>
             <td style="padding: 0 0 32px 0;">
-              <p style="margin: 0 0 16px 0; font-size: 11px; font-weight: 300; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(255, 255, 255, 0.4);">
+              <p style="margin: 0 0 16px 0; font-size: 11px; font-weight: 300; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(0, 0, 0, 0.4);">
                 What We'll Discuss
               </p>
-              <p style="margin: 0; font-size: 16px; font-weight: 300; color: rgba(255, 255, 255, 0.8); line-height: 1.7; letter-spacing: -0.1px;">
+              <p style="margin: 0; font-size: 16px; font-weight: 300; color: rgba(0, 0, 0, 0.8); line-height: 1.7; letter-spacing: -0.1px;">
                 During our call, we'll dive deeper into your project goals, discuss the specific requirements and challenges, explore how we can best serve your needs, and answer any questions you might have about our process and approach.
               </p>
             </td>
@@ -111,8 +111,8 @@ export function generateWelcomeEmailTemplate(
             <td style="padding: 0 0 32px 0;">
               <table role="presentation" cellspacing="0" cellpadding="0" border="0">
                 <tr>
-                  <td style="background-color: #ffffff; border-radius: 8px;">
-                    <a href="${escapeHtml(scheduleLink)}" style="display: inline-block; padding: 14px 32px; font-size: 14px; font-weight: 300; letter-spacing: -0.2px; color: #000000; text-decoration: none; line-height: 1.5;">
+                  <td style="background-color: #000000; border-radius: 8px;">
+                    <a href="${escapeHtml(scheduleLink)}" style="display: inline-block; padding: 14px 32px; font-size: 14px; font-weight: 300; letter-spacing: -0.2px; color: #ffffff; text-decoration: none; line-height: 1.5;">
                       Schedule a Call
                     </a>
                   </td>
@@ -124,28 +124,28 @@ export function generateWelcomeEmailTemplate(
           <!-- 5. Reassurance (Timeline / Next Steps) -->
           <tr>
             <td style="padding: 0 0 40px 0;">
-              <p style="margin: 0 0 16px 0; font-size: 11px; font-weight: 300; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(255, 255, 255, 0.4);">
+              <p style="margin: 0 0 16px 0; font-size: 11px; font-weight: 300; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(0, 0, 0, 0.4);">
                 What Happens Next
               </p>
-              <p style="margin: 0; font-size: 16px; font-weight: 300; color: rgba(255, 255, 255, 0.8); line-height: 1.7; letter-spacing: -0.1px;">
-                After our call, we'll send you a detailed proposal tailored to your specific needs within <strong style="color: #ffffff; font-weight: 400;">48 hours</strong>. We're committed to making this process smooth and transparent, and we're here to answer any questions along the way.
+              <p style="margin: 0; font-size: 16px; font-weight: 300; color: rgba(0, 0, 0, 0.8); line-height: 1.7; letter-spacing: -0.1px;">
+                After our call, we'll send you a detailed proposal tailored to your specific needs within <strong style="color: #000000; font-weight: 400;">48 hours</strong>. We're committed to making this process smooth and transparent, and we're here to answer any questions along the way.
               </p>
             </td>
           </tr>
 
           <!-- Additional Info -->
           <tr>
-            <td style="padding: 0 0 40px 0; border-top: 1px solid rgba(255, 255, 255, 0.1);">
-              <p style="margin: 32px 0 0 0; font-size: 14px; font-weight: 300; color: rgba(255, 255, 255, 0.6); line-height: 1.6;">
-                If you have any questions before our call, feel free to reach out directly at <a href="mailto:contact@zynra.studio" style="color: #ffffff; text-decoration: underline;">contact@zynra.studio</a>.
+            <td style="padding: 0 0 40px 0; border-top: 1px solid rgba(0, 0, 0, 0.1);">
+              <p style="margin: 32px 0 0 0; font-size: 14px; font-weight: 300; color: rgba(0, 0, 0, 0.6); line-height: 1.6;">
+                If you have any questions before our call, feel free to reach out directly at <a href="mailto:contact@zynra.studio" style="color: #000000; text-decoration: underline;">contact@zynra.studio</a>.
               </p>
             </td>
           </tr>
 
           <!-- Footer -->
           <tr>
-            <td style="padding: 40px 0 0 0; border-top: 1px solid rgba(255, 255, 255, 0.1);">
-              <p style="margin: 0 0 8px 0; font-size: 15px; font-weight: 300; color: #ffffff; line-height: 1.5;">
+            <td style="padding: 40px 0 0 0; border-top: 1px solid rgba(0, 0, 0, 0.1);">
+              <p style="margin: 0 0 8px 0; font-size: 15px; font-weight: 300; color: #000000; line-height: 1.5;">
                 Best regards,<br>
                 <span style="font-weight: 400;">The Zynra Studio Team</span>
               </p>
