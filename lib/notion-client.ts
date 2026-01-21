@@ -90,7 +90,7 @@ export async function createLeadRecord(
         name: "Website Quote Form",
       },
     },
-    "Budget Range": {
+    BudgetRange: {
       select: {
         name: mapBudgetRangeToNotion(data.budgetRange),
       },
@@ -131,14 +131,23 @@ export async function createLeadRecord(
   }
 
   try {
-    await notion.pages.create({
+    const response = await notion.pages.create({
       parent: {
         database_id: databaseId,
       },
       properties: properties as Parameters<typeof notion.pages.create>[0]['properties'],
     })
+    console.log("✅ Notion page created successfully:", response.id)
   } catch (error) {
-    console.error("Notion API error:", error)
+    console.error("❌ Notion API error:", error)
+    if (error instanceof Error) {
+      console.error("Error details:", {
+        message: error.message,
+        name: error.name,
+      })
+    }
+    // Log the properties we tried to send for debugging
+    console.error("Properties sent to Notion:", JSON.stringify(properties, null, 2))
     throw error
   }
 }
