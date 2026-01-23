@@ -58,7 +58,6 @@ export const projects: Project[] = [
     description: 'The Future of Decentralized Splits. Create transparent, secure splits for betting, crowdfunding, and community decisions. Powered by smart contracts.',
     fullDescription: 'Esplit is a revolutionary Web3 staking and splitting platform. We engineered the smart contracts and the frontend interface to allow users to create decentralized splits for various purposes. The platform ensures automatic execution and instant settlements, bringing transparency to community-driven financial decisions.',
     image: '/image/portfolio/esplit.PNG',
-    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ', // Placeholder video
     tags: ['Solidity', 'Polygon', 'Ethers.js', 'Next.js', 'Web3.js', 'Tailwind CSS'],
     impact: 'Instant On-Chain Settlements',
     demoUrl: 'https://www.esplitting.io/',
@@ -89,7 +88,6 @@ export const projects: Project[] = [
     description: 'The only workspace marketplace that guarantees success for both space seekers and Space Partners. Flexible hourly bookings without long-term commitments.',
     fullDescription: 'Based in Sydney, Australia, Spacel is a workspace marketplace that we helped bring to life by building their mobile app and website. The platform connects space seekers with flexible hourly bookings, removing the friction of long-term commitments and empowering space partners to monetize their unused square footage.',
     image: '/image/portfolio/spacel.PNG',
-    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ', // Placeholder video
     tags: ['React Native', 'Next.js', 'Google Maps API', 'Stripe', 'PostgreSQL', 'Redis'],
     impact: 'Disrupted Sydney Workspace Market',
     demoUrl: 'https://www.spacel.app/',
