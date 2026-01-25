@@ -192,12 +192,79 @@ ${signatureText}
 
 /**
  * Formats message text, preserving line breaks and escaping HTML
- * Supports basic formatting like bold (**text**) and italic (*text*)
+ * Supports HTML from rich text editor or basic markdown formatting
  */
 function formatMessage(text: string): string {
   // Trim leading and trailing whitespace, but preserve internal formatting
   let formatted = text.trim()
 
+  // Check if message contains HTML tags (from rich text editor)
+  const hasHtml = /<[a-z][\s\S]*>/i.test(formatted)
+
+  if (hasHtml) {
+    // Process HTML from rich text editor
+    // Tiptap already outputs properly formatted HTML, so we just need to add inline styles
+    // for email compatibility. DO NOT escape the text content - it's already safe HTML.
+    
+    // Convert <p> tags to styled paragraphs (only if they don't already have style)
+    formatted = formatted.replace(/<p(?![^>]*style[^>]*>)(\s+[^>]*)?>/gi, (match, attrs = '') => {
+      // Remove existing style attribute if present
+      const cleanAttrs = attrs.replace(/\s*style=["'][^"']*["']/gi, '')
+      return `<p${cleanAttrs} style="margin: 0.5em 0; font-size: 16px; font-weight: 300; color: rgba(0, 0, 0, 0.8); line-height: 1.7;">`
+    })
+    
+    // Convert <strong> and <b> to styled bold (only if they don't already have style)
+    formatted = formatted.replace(/<(strong|b)(?![^>]*style[^>]*>)(\s+[^>]*)?>/gi, (match, tag, attrs = '') => {
+      const cleanAttrs = attrs.replace(/\s*style=["'][^"']*["']/gi, '')
+      return `<${tag}${cleanAttrs} style="color: #000000; font-weight: 400;">`
+    })
+    
+    // Convert <ul> and <ol> to styled lists
+    formatted = formatted.replace(/<ul(?![^>]*style[^>]*>)(\s+[^>]*)?>/gi, (match, attrs = '') => {
+      const cleanAttrs = attrs.replace(/\s*style=["'][^"']*["']/gi, '')
+      return `<ul${cleanAttrs} style="margin: 0.5em 0; padding-left: 1.5em;">`
+    })
+    formatted = formatted.replace(/<ol(?![^>]*style[^>]*>)(\s+[^>]*)?>/gi, (match, attrs = '') => {
+      const cleanAttrs = attrs.replace(/\s*style=["'][^"']*["']/gi, '')
+      return `<ol${cleanAttrs} style="margin: 0.5em 0; padding-left: 1.5em;">`
+    })
+    formatted = formatted.replace(/<li(?![^>]*style[^>]*>)(\s+[^>]*)?>/gi, (match, attrs = '') => {
+      const cleanAttrs = attrs.replace(/\s*style=["'][^"']*["']/gi, '')
+      return `<li${cleanAttrs} style="margin: 0.25em 0;">`
+    })
+    
+    // Convert <a> links to styled links (preserve href and other attributes)
+    formatted = formatted.replace(/<a\s+([^>]*)>/gi, (match, attrs) => {
+      // Extract href if present
+      const hrefMatch = attrs.match(/href=["']([^"']+)["']/i)
+      const href = hrefMatch ? hrefMatch[1] : ''
+      // Remove href and style from attrs
+      const cleanAttrs = attrs
+        .replace(/href=["'][^"']*["']/gi, '')
+        .replace(/\s*style=["'][^"']*["']/gi, '')
+        .trim()
+      const attrsStr = cleanAttrs ? ` ${cleanAttrs}` : ''
+      return `<a href="${href}"${attrsStr} style="color: #000000; text-decoration: underline;">`
+    })
+    
+    // Convert headings (only if they don't already have style)
+    formatted = formatted.replace(/<h1(?![^>]*style[^>]*>)(\s+[^>]*)?>/gi, (match, attrs = '') => {
+      const cleanAttrs = attrs.replace(/\s*style=["'][^"']*["']/gi, '')
+      return `<h1${cleanAttrs} style="font-size: 1.5em; font-weight: 600; margin: 0.8em 0 0.4em 0; color: #000000;">`
+    })
+    formatted = formatted.replace(/<h2(?![^>]*style[^>]*>)(\s+[^>]*)?>/gi, (match, attrs = '') => {
+      const cleanAttrs = attrs.replace(/\s*style=["'][^"']*["']/gi, '')
+      return `<h2${cleanAttrs} style="font-size: 1.3em; font-weight: 600; margin: 0.8em 0 0.4em 0; color: #000000;">`
+    })
+    formatted = formatted.replace(/<h3(?![^>]*style[^>]*>)(\s+[^>]*)?>/gi, (match, attrs = '') => {
+      const cleanAttrs = attrs.replace(/\s*style=["'][^"']*["']/gi, '')
+      return `<h3${cleanAttrs} style="font-size: 1.1em; font-weight: 600; margin: 0.8em 0 0.4em 0; color: #000000;">`
+    })
+
+    return formatted
+  }
+
+  // Fallback to markdown processing for plain text
   // Escape HTML first
   formatted = escapeHtml(formatted)
 
