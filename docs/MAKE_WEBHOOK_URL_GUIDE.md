@@ -40,7 +40,7 @@
    ```
    https://hook.make.com/xxxxxxxxxxxxxxxxxxxxxxxxxxxxx
    ```
-7. **Important**: Save both the webhook URL and API key (if you enabled authentication)
+7. **Important**: Save both the webhook URL and API key (if you enabled authentication yeah)
 
 ### Step 4: Save the Webhook URL
 
