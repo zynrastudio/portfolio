@@ -72,27 +72,30 @@ Data Structure: JSON
 
 The polling service at `/api/poll/notion` needs to be called every 5-10 seconds. Options:
 
-**Option A: Vercel Cron Jobs** (Minimum 1 minute interval)
-- ⚠️ **Limitation**: Vercel cron jobs use 5-field format (no seconds) - minimum interval is 1 minute
-- Already configured in `vercel.json` to run every 1 minute:
-```json
-{
-  "crons": [{
-    "path": "/api/poll/notion",
-    "schedule": "*/1 * * * *"
-  }]
-}
-```
-- This means status changes may take up to 1 minute to be detected
-
-**Option B: External Cron Service** (Recommended for 10-second intervals)
-- Use cron-job.org, EasyCron, or similar
+**Option A: External Cron Service** (Recommended - Required for Hobby plan)
+- ⚠️ **Vercel Hobby plan limitation**: Only supports daily cron jobs (once per day)
+- Use an external cron service for frequent polling:
+  - **cron-job.org** (Free tier available)
+  - **EasyCron** (Paid, but reliable)
+  - **UptimeRobot** (Free tier available)
 - Set to call: `https://zynra.studio/api/poll/notion` every 10 seconds
 - These services support second-level precision
+- **Setup example for cron-job.org**:
+  1. Sign up at https://cron-job.org
+  2. Create new cron job
+  3. URL: `https://zynra.studio/api/poll/notion`
+  4. Schedule: Every 10 seconds (or use custom: `*/10 * * * * *`)
+  5. Method: GET
+  6. Save and activate
 
-**Option C: Make.com HTTP Module Loop** (Alternative)
+**Option B: Make.com HTTP Module Loop** (Alternative)
 - Create a separate Make.com scenario that calls the polling endpoint
 - Use "Schedule" trigger to run every 10 seconds
+- Add HTTP module to call: `https://zynra.studio/api/poll/notion`
+
+**Option C: Vercel Cron Jobs** (Pro plan only)
+- ⚠️ **Requires Vercel Pro plan** - Hobby plan only allows daily cron jobs
+- If you upgrade to Pro, you can use `vercel.json` with schedule: `*/1 * * * *`
 
 **Environment Variables Required:**
 ```bash
