@@ -2,11 +2,17 @@ import { NextRequest, NextResponse } from "next/server"
 import { Client } from "@notionhq/client"
 import type { PageObjectResponse } from "@notionhq/client/build/src/api-endpoints"
 
-// Initialize Notion client
-const notion = new Client({ auth: process.env.NOTION_API_KEY })
-
 // Store last seen statuses in memory (in production, use Redis or database)
 const seenStatuses = new Map<string, { status: string; lastChecked: Date }>()
+
+// Initialize Notion client - create inside function to ensure env vars are loaded
+function getNotionClient() {
+  const apiKey = process.env.NOTION_API_KEY
+  if (!apiKey) {
+    throw new Error("NOTION_API_KEY is not configured")
+  }
+  return new Client({ auth: apiKey })
+}
 
 /**
  * Notion Polling Service
@@ -41,9 +47,34 @@ export async function GET(request: NextRequest) {
       )
     }
 
+    // Initialize Notion client
+    let notion: Client
+    try {
+      notion = getNotionClient()
+    } catch (error) {
+      return NextResponse.json(
+        { 
+          error: "Failed to initialize Notion client",
+          details: error instanceof Error ? error.message : "NOTION_API_KEY not configured"
+        },
+        { status: 500 }
+      )
+    }
+
     // Query the database for recent changes
-    // @ts-expect-error - The Notion SDK has this method but TypeScript types are incomplete
-    const response = await notion.databases.query({
+    // Note: Using type assertion since TypeScript types may be incomplete
+    const databases = notion.databases as any
+    if (!databases || typeof databases.query !== 'function') {
+      return NextResponse.json(
+        { 
+          error: "Notion client not properly initialized",
+          details: "databases.query method not available. Check NOTION_API_KEY and SDK version."
+        },
+        { status: 500 }
+      )
+    }
+
+    const response = await databases.query({
       database_id: databaseId,
       filter: {
         property: "Status",
@@ -104,7 +135,8 @@ export async function GET(request: NextRequest) {
 
         // Fetch full page data and forward to Make.com
         try {
-          const fullPage = await notion.pages.retrieve({ page_id: pageId })
+          const notionClient = getNotionClient()
+          const fullPage = await notionClient.pages.retrieve({ page_id: pageId })
           const fullPageData = fullPage as PageObjectResponse
 
           console.log(`📊 Status changed for ${pageId}: ${previousStatus || "null"} → ${currentStatus}`)
