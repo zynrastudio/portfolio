@@ -74,9 +74,10 @@ Unified Automation Scenario (7 Routes)
 
 4. **Set Up Polling** (Choose one):
 
-   **Option A: Vercel Cron Jobs** (Recommended)
-   - Already configured in `vercel.json`
-   - Automatically runs every 10 seconds when deployed to Vercel
+   **Option A: Vercel Cron Jobs** (Minimum 1 minute)
+   - ⚠️ **Limitation**: Vercel cron jobs can only run every 1 minute minimum (5-field format, no seconds)
+   - Already configured in `vercel.json` to run every 1 minute
+   - Status changes may take up to 1 minute to be detected
 
    **Option B: External Cron Service**
    - Use cron-job.org, EasyCron, or similar

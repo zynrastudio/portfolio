@@ -72,20 +72,23 @@ Data Structure: JSON
 
 The polling service at `/api/poll/notion` needs to be called every 5-10 seconds. Options:
 
-**Option A: Vercel Cron Jobs** (Recommended if using Vercel)
-- Add to `vercel.json`:
+**Option A: Vercel Cron Jobs** (Minimum 1 minute interval)
+- ⚠️ **Limitation**: Vercel cron jobs use 5-field format (no seconds) - minimum interval is 1 minute
+- Already configured in `vercel.json` to run every 1 minute:
 ```json
 {
   "crons": [{
     "path": "/api/poll/notion",
-    "schedule": "*/10 * * * * *"
+    "schedule": "*/1 * * * *"
   }]
 }
 ```
+- This means status changes may take up to 1 minute to be detected
 
-**Option B: External Cron Service**
+**Option B: External Cron Service** (Recommended for 10-second intervals)
 - Use cron-job.org, EasyCron, or similar
 - Set to call: `https://zynra.studio/api/poll/notion` every 10 seconds
+- These services support second-level precision
 
 **Option C: Make.com HTTP Module Loop** (Alternative)
 - Create a separate Make.com scenario that calls the polling endpoint
