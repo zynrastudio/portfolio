@@ -10,6 +10,10 @@ export interface ContractData {
   fee: number | string
   paymentTerms: string
   startDate: string
+  revisionsChangeRequests?: string
+  confidentialityClause?: string
+  liabilityLimitation?: string
+  deliverables?: string
 }
 
 /**
@@ -77,6 +81,10 @@ export function replaceContractVariables(
     fee,
     paymentTerms,
     startDate,
+    revisionsChangeRequests,
+    confidentialityClause,
+    liabilityLimitation,
+    deliverables,
   } = data
 
   // Format values
@@ -104,6 +112,10 @@ export function replaceContractVariables(
     .replace(/\{\{paymentTerms\}\}/g, safePaymentTerms)
     .replace(/\{\{startDate\}\}/g, formattedStartDate)
     .replace(/\{\{currentDate\}\}/g, currentDate)
+    .replace(/\{\{revisionsChangeRequests\}\}/g, revisionsChangeRequests || "This agreement includes up to 2 rounds of revisions per deliverable. Additional revisions or significant scope changes will be billed at our standard hourly rate of $150/hour and require written approval before work begins.")
+    .replace(/\{\{confidentialityClause\}\}/g, confidentialityClause || "Both parties agree to maintain confidentiality of all proprietary information shared during the course of this project. This agreement remains in effect indefinitely.")
+    .replace(/\{\{liabilityLimitation\}\}/g, liabilityLimitation || "Zynra Studio's total liability under this agreement shall not exceed the total project fee. We are not liable for any indirect, incidental, or consequential damages.")
+    .replace(/\{\{deliverables\}\}/g, deliverables || "All project deliverables will be specified in the project plan and communicated through our project management system. Deliverables will be provided in agreed-upon formats and are subject to client review and approval.")
 
   return result
 }

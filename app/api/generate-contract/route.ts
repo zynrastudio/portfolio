@@ -24,6 +24,10 @@ const contractRequestSchema = z.object({
     }),
     paymentTerms: z.string().min(1, "Payment terms are required"),
     startDate: z.string().optional(),
+    revisionsChangeRequests: z.string().optional(),
+    confidentialityClause: z.string().optional(),
+    liabilityLimitation: z.string().optional(),
+    deliverables: z.string().optional(),
   }),
 })
 
@@ -66,7 +70,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Replace variables in the template
-    const html = replaceContractVariables(template, {
+    const contractData: ContractData = {
       clientName: leadData.clientName,
       companyName: leadData.companyName || "",
       projectName: leadData.projectName,
@@ -74,7 +78,12 @@ export async function POST(request: NextRequest) {
       fee: leadData.fee,
       paymentTerms: leadData.paymentTerms,
       startDate: leadData.startDate || new Date().toISOString().split("T")[0],
-    } as ContractData)
+      revisionsChangeRequests: leadData.revisionsChangeRequests ?? undefined,
+      confidentialityClause: leadData.confidentialityClause ?? undefined,
+      liabilityLimitation: leadData.liabilityLimitation ?? undefined,
+      deliverables: leadData.deliverables ?? undefined,
+    }
+    const html = replaceContractVariables(template, contractData)
 
     // Check if NOTION_API_KEY is configured
     if (!process.env.NOTION_API_KEY) {

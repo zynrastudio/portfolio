@@ -175,7 +175,7 @@ This email was sent from your portfolio contact form.
 
     // Send quote request email to contact@zynra.studio
     const { data: emailData, error } = await resend.emails.send({
-      from: "Zynra Studio <hi@zynra.studio>",
+      from: "Zynra Studio <contact@zynra.studio>",
       to: "contact@zynra.studio",
       replyTo: data.email,
       subject: emailSubject,
@@ -229,7 +229,7 @@ This email was sent from your portfolio contact form.
     // Send acknowledgment email (don't fail if this fails - the main email was sent)
     try {
       await resend.emails.send({
-        from: "Zynra Studio <hi@zynra.studio>",
+        from: "Zynra Studio <contact@zynra.studio>",
         to: data.email,
         subject: acknowledgmentSubject,
         html: acknowledgmentEmail.html,

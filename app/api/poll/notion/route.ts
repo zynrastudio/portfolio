@@ -28,7 +28,7 @@ function getNotionClient() {
  * 2. Compare current status with last known status
  * 3. If status changed, forward to Make.com webhook
  */
-export async function GET(request: NextRequest) {
+export async function GET() {
   try {
     const databaseId = process.env.NOTION_LEADS_DATABASE_ID
     const makeWebhookUrl = process.env.MAKE_WEBHOOK_URL
@@ -81,9 +81,12 @@ export async function GET(request: NextRequest) {
       
       // Step 2: Extract data source ID (new API) or use database ID directly (old API)
       let dataSourceId = databaseId
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      if (dbInfo && (dbInfo as any).data_sources && Array.isArray((dbInfo as any).data_sources) && (dbInfo as any).data_sources.length > 0) {
-        dataSourceId = (dbInfo as any).data_sources[0].id
+      interface DatabaseWithDataSources {
+        data_sources?: Array<{ id: string }>
+      }
+      const dbInfoWithSources = dbInfo as DatabaseWithDataSources
+      if (dbInfoWithSources?.data_sources && Array.isArray(dbInfoWithSources.data_sources) && dbInfoWithSources.data_sources.length > 0) {
+        dataSourceId = dbInfoWithSources.data_sources[0].id
         console.log(`📋 Using data source ID: ${dataSourceId}`)
       } else {
         console.log(`⚠️ No data_sources found, using database ID as data source ID: ${dataSourceId}`)
@@ -95,7 +98,24 @@ export async function GET(request: NextRequest) {
         throw new Error("dataSources API not available. SDK version may be incompatible.")
       }
       
-      response = await (notion.dataSources as any).query({
+      interface DataSourcesQuery {
+        query: (params: {
+          data_source_id: string
+          filter: {
+            property: string
+            select: {
+              is_not_empty: boolean
+            }
+          }
+          sorts: Array<{
+            timestamp: string
+            direction: string
+          }>
+          page_size: number
+        }) => Promise<{ results: PageObjectResponse[] }>
+      }
+      const dataSources = notion.dataSources as unknown as DataSourcesQuery
+      response = await dataSources.query({
         data_source_id: dataSourceId,
         filter: {
           property: "Status",
@@ -131,10 +151,10 @@ export async function GET(request: NextRequest) {
 
     // Check each page for status changes
     for (const page of response.results) {
-      if (!("properties" in page)) continue
-
-      const pageId = page.id
       const pageData = page as PageObjectResponse
+      if (!("properties" in pageData)) continue
+
+      const pageId = pageData.id
       const statusProperty = pageData.properties.Status
 
       // Extract current status
