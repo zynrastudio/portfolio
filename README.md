@@ -6,6 +6,7 @@ A modern Next.js portfolio with automated client journey management, from lead c
 
 - **Modern Portfolio Site**: Showcase projects, services, and team
 - **Lead Capture Form**: Quote request system with instant email notifications
+- **Client Communication Tools**: Isolated tools subdomain for sending messages, generating contracts, and managing client communications
 - **Automated Client Journey**: Complete workflow automation from lead to completion
 - **Instant Webhooks**: Real-time triggers (< 1 second) via Make.com integration
 - **Notion Integration**: Lead database with automated contract generation
@@ -60,6 +61,7 @@ This portfolio includes a complete client journey automation system:
 ```bash
 # Next.js
 NEXT_PUBLIC_URL=https://zynra.studio
+NEXT_PUBLIC_TOOLS_URL=https://tools.zynra.studio
 
 # Email (Resend)
 RESEND_API_KEY=
@@ -85,17 +87,23 @@ LINEAR_TEAM_ID=
 
 ## API Endpoints
 
-### Public Endpoints
+### Public Endpoints (Main Domain)
 - `POST /api/quote` - Submit quote request (creates lead + sends emails)
-
-### Automation Endpoints (for Make.com)
-- `POST /api/generate-welcome-email` - Generate welcome email from template
-- `POST /api/generate-rejection-email` - Generate rejection email from template
-- `POST /api/generate-contract` - Generate contract in Notion
-
-### Webhook Endpoints
 - `POST /api/webhooks/notion` - Receive Notion database change webhooks
 - `GET /api/webhooks/notion` - Health check
+
+### Tools Subdomain Only (tools.zynra.studio)
+These endpoints are only accessible on the tools subdomain for security:
+- `POST /api/send-client-message` - Send custom client messages
+- `POST /api/generate-contract` - Generate contract HTML
+- `POST /api/generate-welcome-email` - Generate welcome email from template
+- `POST /api/generate-rejection-email` - Generate rejection email from template
+- `POST /api/generate-audit-pdf` - Generate audit report PDF
+- `POST /api/generate-audit-preview` - Preview audit report
+- `POST /api/generate-pdf` - General PDF generation
+
+### Web Interface
+- `https://tools.zynra.studio/send-message` - Client communication tool (visual interface)
 
 ## Project Structure
 
@@ -183,11 +191,13 @@ vercel --prod
 
 ### Setup Guides
 - [Webhook Quick Start](docs/WEBHOOK_QUICK_START.md) - Get started in 30 minutes
+- [Tools Subdomain Setup](docs/TOOLS_SUBDOMAIN_SETUP.md) - Configure tools.zynra.studio
 - [Unified Scenario Blueprint](docs/UNIFIED_SCENARIO_BLUEPRINT.md) - Complete module reference
 - [Notion Webhook Setup](docs/NOTION_WEBHOOK_SETUP.md) - Detailed webhook guide
 
 ### Reference
 - [Quick Reference](docs/QUICK_REFERENCE.md) - Common patterns and mappings
+- [Client Message Template](docs/CLIENT_MESSAGE_TEMPLATE_USAGE.md) - Send custom emails
 - [Gmail Draft Automation](docs/make-scenarios/01-gmail-draft-automation.md) - Routes 1-2
 - [Full Client Journey](docs/make-scenarios/02-full-client-journey-automation.md) - Routes 3-7
 

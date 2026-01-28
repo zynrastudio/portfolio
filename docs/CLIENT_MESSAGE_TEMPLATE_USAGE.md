@@ -13,13 +13,18 @@ Navigate to `/send-message` in your browser to use the visual form interface. Th
 - ✅ Markdown formatting support
 - ✅ One-click sending
 
-**URL:** `http://localhost:3000/send-message` (or your production URL)
+**URLs:** 
+- Development: `http://localhost:3000/send-message`
+- Production: `https://tools.zynra.studio/send-message`
+
+> **Note:** The send-message interface is only accessible on the tools subdomain (`tools.zynra.studio`) in production for security purposes.
 
 ### Option 2: Use the API Route
 
 Send a POST request to `/api/send-client-message`:
 
 ```bash
+# Development
 curl -X POST http://localhost:3000/api/send-client-message \
   -H "Content-Type: application/json" \
   -d '{
@@ -31,6 +36,16 @@ curl -X POST http://localhost:3000/api/send-client-message \
       "text": "View Project",
       "url": "https://zynra.studio/projects/123"
     }
+  }'
+
+# Production (tools subdomain only)
+curl -X POST https://tools.zynra.studio/api/send-client-message \
+  -H "Content-Type: application/json" \
+  -d '{
+    "to": "client@example.com",
+    "name": "John Doe",
+    "subject": "Project Update",
+    "message": "I wanted to update you on the progress of your project."
   }'
 ```
 
@@ -153,7 +168,17 @@ The template supports basic markdown formatting:
 ### Test with curl
 
 ```bash
+# Development
 curl -X POST http://localhost:3000/api/send-client-message \
+  -H "Content-Type: application/json" \
+  -d '{
+    "to": "your-email@example.com",
+    "name": "Test User",
+    "message": "This is a test message to verify the email template works correctly."
+  }'
+
+# Production (must use tools subdomain)
+curl -X POST https://tools.zynra.studio/api/send-client-message \
   -H "Content-Type: application/json" \
   -d '{
     "to": "your-email@example.com",

@@ -1,159 +1,212 @@
-# Make.com Email Draft Automation - Implementation Summary
+# Tools Subdomain Implementation Summary
 
 ## Overview
 
-This implementation sets up an automation workflow that monitors the Notion Leads database for status changes. When a lead is marked as "Qualified" or "Unqualified", the system generates HTML emails using templates stored in Notion and creates Gmail drafts for manual review and sending.
+Successfully implemented domain-based routing to isolate the send-message functionality to `tools.zynra.studio` subdomain using Next.js middleware.
 
-## What Has Been Implemented
+## Changes Made
 
-### 1. Email Template Functions ✅
+### 1. Core Implementation
 
-Created two email template generators matching the acknowledgment email design:
+#### New File: `middleware.ts`
+- **Location:** Project root
+- **Purpose:** Domain-based routing and access control
+- **Features:**
+  - Restricts 8 routes to tools subdomain only
+  - Returns 404 for unauthorized access from main domain
+  - Supports local development with `localhost` and `tools.localhost`
+  - Optimized with route matcher to exclude static files
 
-- **`lib/email-templates-welcome.ts`**
-  - Generates welcome email for qualified leads
-  - Follows the 5-section structure:
-    1. Personal acknowledgement
-    2. What you understood from their request
-    3. What the call will clarify
-    4. Scheduling link (CTA button)
-    5. Reassurance (timeline / next steps)
-  - Subject: "Thanks for reaching out — let's talk about your project"
-  - Variables: `{name}`, `{service}`, `{company}`, `{budgetRange}`, `{timeline}`, `{message}`, `{schedulingLink}`
+**Protected Routes:**
+- `/send-message` - Client communication page
+- `/api/send-client-message` - Email API
+- `/api/generate-contract` - Contract generation
+- `/api/generate-audit-pdf` - Audit PDF generation
+- `/api/generate-audit-preview` - Audit preview
+- `/api/generate-pdf` - General PDF generation
+- `/api/generate-rejection-email` - Rejection email templates
+- `/api/generate-welcome-email` - Welcome email templates
 
-- **`lib/email-templates-rejection.ts`**
-  - Generates rejection email for unqualified leads
-  - Professional rejection message with reason placeholder
-  - Subject: "Thank you for your interest - Zynra Studio"
-  - Variables: `{name}`, `{reason}`
+### 2. Documentation Updates
 
-Both templates use the same dark theme design (#0a0a0a background, glassmorphism style) as the acknowledgment email.
+#### Updated: `README.md`
+- Added `NEXT_PUBLIC_TOOLS_URL` environment variable
+- Reorganized API endpoints section with domain-specific sections
+- Added tools subdomain information to features list
+- Added link to tools subdomain setup documentation
 
-### 2. Notion Database Setup Scripts ✅
+#### Updated: `docs/CLIENT_MESSAGE_TEMPLATE_USAGE.md`
+- Updated URLs to reference tools subdomain for production
+- Added security note about subdomain-only access
+- Updated all curl examples with both development and production URLs
+- Added explicit distinction between local and production environments
 
-- **`scripts/setup-notion-email-templates.ts`**
-  - Creates Email Templates database in Notion
-  - Adds initial Welcome and Rejection template entries
-  - Provides database ID for environment variable
+#### New: `docs/TOOLS_SUBDOMAIN_SETUP.md`
+- Comprehensive setup guide with architecture diagrams
+- Step-by-step DNS configuration instructions
+- Vercel domain setup walkthrough
+- Local development guidelines
+- Testing procedures
+- Troubleshooting section
+- Maintenance guide for adding/removing protected routes
 
-- **`scripts/update-leads-database-schema.ts`**
-  - Checks current Leads database schema
-  - Provides instructions for manually adding new properties:
-    - Rejection Reason (Rich Text)
-    - Email Draft Created (Checkbox)
-    - Draft Email ID (Rich Text)
+#### New: `docs/SUBDOMAIN_DEPLOYMENT_CHECKLIST.md`
+- Pre-deployment checklist
+- Step-by-step deployment guide
+- Testing checklist with expected results
+- Monitoring recommendations
+- Troubleshooting guide with solutions
+- Rollback procedures
 
-### 3. Make.com Scenario Documentation ✅
+#### New: `.env.example`
+- Template for all environment variables
+- Includes new `NEXT_PUBLIC_TOOLS_URL` variable
+- Organized by service (Next.js, Resend, Notion, Webhooks, Slack, Linear)
+- Helpful comments and placeholder values
 
-- **`docs/make-scenario-blueprint.json`**
-  - Complete scenario structure with 9 modules
-  - Module flow: Trigger → Router → Template Fetch → Email Generation → Gmail Draft → Notion Update
+### 3. Configuration
 
-- **`docs/MAKE_AUTOMATION_SETUP.md`**
-  - Comprehensive setup guide
-  - Step-by-step instructions for:
-    - Creating Email Templates database
-    - Updating Leads database schema
-    - Creating Make.com scenario
-    - Template variable replacement logic
-    - Testing procedures
-    - Troubleshooting guide
+#### Unchanged: `vercel.json`
+- No changes needed
+- Vercel automatically handles multi-domain routing
+- Existing minimal configuration is sufficient
+
+#### Unchanged: `next.config.ts`
+- No changes needed
+- Existing configuration compatible with middleware
 
 ## Architecture
 
 ```
-Notion Leads DB (Status Change)
-    ↓
-Make.com Trigger (Watch Database)
-    ↓
-Router (Qualified vs Unqualified)
-    ↓
-    ├─→ Qualified Path
-    │   ├─→ Get Welcome Template (Notion)
-    │   ├─→ Generate Welcome Email HTML (Replace Variables)
-    │   └─→ Create Gmail Draft (Welcome)
-    │
-    └─→ Unqualified Path
-        ├─→ Get Rejection Template (Notion)
-        ├─→ Generate Rejection Email HTML (Replace Variables)
-        └─→ Create Gmail Draft (Rejection)
-    ↓
-Update Notion Record (Draft Created Status)
+Request Flow:
+
+User Request
+     ↓
+Next.js Middleware (middleware.ts)
+     ↓
+  Is tools route?
+     ├─ No → Allow request (proceed to Next.js router)
+     └─ Yes → Check domain
+          ├─ tools.zynra.studio → Allow request
+          └─ zynra.studio → Return 404
 ```
 
-## Next Steps for User
+## Security Features
 
-### 1. Run Setup Scripts
+1. **Hidden Routes**: Returns 404 instead of 403 to hide existence
+2. **Complete Isolation**: Tools routes completely inaccessible from main domain
+3. **Zero Code Duplication**: Same codebase, domain-based access control
+4. **Minimal Performance Impact**: Middleware check is extremely fast
+5. **Development Friendly**: Local development unaffected
 
-```bash
-# Create Email Templates database
-npx tsx scripts/setup-notion-email-templates.ts
+## Benefits Achieved
 
-# Check Leads database schema
-npx tsx scripts/update-leads-database-schema.ts
-```
+✅ **Single Codebase** - No need to maintain separate projects  
+✅ **Single Deployment** - One Vercel project for both domains  
+✅ **Complete Security** - Tools hidden from public domain  
+✅ **Cost Effective** - No additional hosting costs  
+✅ **Easy Maintenance** - Update both domains simultaneously  
+✅ **Developer Experience** - Local development unchanged  
+✅ **Scalable** - Easy to add more tools in the future  
 
-### 2. Manual Notion Setup
+## Manual Steps Required
 
-- Add the three new properties to Leads database (if not done automatically)
-- Copy HTML templates from the generated functions into Notion Email Templates database
-- Note the database IDs for Make.com configuration
+After deploying the code changes, you'll need to:
 
-### 3. Create Make.com Scenario
+1. **Configure DNS** (5 minutes)
+   - Add CNAME record: `tools` → `cname.vercel-dns.com`
+   - Wait for DNS propagation (5-10 minutes)
 
-Follow the detailed guide in `docs/MAKE_AUTOMATION_SETUP.md`:
-- Set up Notion connection
-- Set up Google Email (Gmail) connection
-- Create scenario using the blueprint structure
-- Configure template variable replacement logic
-- Test with sample lead status changes
+2. **Add Domain in Vercel** (2 minutes)
+   - Dashboard → Settings → Domains
+   - Add `tools.zynra.studio`
+   - Wait for SSL certificate (1-5 minutes)
 
-### 4. Test the Automation
+3. **Set Environment Variable** (1 minute)
+   - Add `NEXT_PUBLIC_TOOLS_URL=https://tools.zynra.studio`
+   - Redeploy to apply changes
 
-- Update a lead to "Qualified" status → Verify welcome email draft created
-- Update a lead to "Unqualified" status → Verify rejection email draft created
-- Check that Notion records are updated correctly
-- Review email designs match the acknowledgment email aesthetic
+**Total Time:** ~15-20 minutes (including DNS propagation)
+
+## Testing Checklist
+
+After deployment:
+
+- [ ] ✅ `tools.zynra.studio/send-message` - Should work
+- [ ] ❌ `zynra.studio/send-message` - Should return 404
+- [ ] ✅ `tools.zynra.studio/api/send-client-message` - Should work
+- [ ] ❌ `zynra.studio/api/send-client-message` - Should return 404
+- [ ] ✅ `zynra.studio` - Main site should work normally
+- [ ] ✅ `zynra.studio/api/quote` - Public APIs should work
 
 ## Files Created
 
-1. `lib/email-templates-welcome.ts` - Welcome email template generator
-2. `lib/email-templates-rejection.ts` - Rejection email template generator
-3. `scripts/setup-notion-email-templates.ts` - Notion database setup script
-4. `scripts/update-leads-database-schema.ts` - Schema update checker script
-5. `docs/make-scenario-blueprint.json` - Make.com scenario structure
-6. `docs/MAKE_AUTOMATION_SETUP.md` - Complete setup guide
-7. `docs/IMPLEMENTATION_SUMMARY.md` - This file
+1. `middleware.ts` - Domain routing logic
+2. `.env.example` - Environment variable template
+3. `docs/TOOLS_SUBDOMAIN_SETUP.md` - Setup guide
+4. `docs/SUBDOMAIN_DEPLOYMENT_CHECKLIST.md` - Deployment checklist
+5. `docs/IMPLEMENTATION_SUMMARY.md` - This file
 
-## Environment Variables Needed
+## Files Modified
 
-Add to `.env.local`:
+1. `README.md` - Added subdomain information
+2. `docs/CLIENT_MESSAGE_TEMPLATE_USAGE.md` - Updated URLs
 
-```env
-NOTION_API_KEY=your-notion-api-key
-NOTION_LEADS_DATABASE_ID=91ba6dd0506a49e4b7f7706db990d872
-NOTION_WORKSPACE_PAGE_ID=your-workspace-page-id (for script)
-NOTION_EMAIL_TEMPLATES_DATABASE_ID=your-email-templates-db-id (after creation)
+## Next Steps
+
+1. **Commit Changes:**
+   ```bash
+   git add .
+   git commit -m "Add tools subdomain with middleware-based routing"
+   git push
+   ```
+
+2. **Deploy to Vercel:**
+   ```bash
+   vercel --prod
+   ```
+
+3. **Follow Deployment Checklist:**
+   - See `docs/SUBDOMAIN_DEPLOYMENT_CHECKLIST.md`
+
+4. **Test Thoroughly:**
+   - Verify tools subdomain works
+   - Verify main domain blocks tools routes
+   - Verify main site functionality unaffected
+
+5. **Update Team:**
+   - Notify team of new URL
+   - Update bookmarks
+   - Update any automation scripts
+
+## Maintenance
+
+### Adding New Protected Routes
+
+Edit `middleware.ts` and add route to `TOOLS_ROUTES` array:
+
+```typescript
+const TOOLS_ROUTES = [
+  '/send-message',
+  '/api/send-client-message',
+  // ... existing routes
+  '/api/your-new-route', // Add here
+]
 ```
 
-## Key Features
+### Removing Protection
 
-- ✅ Dark theme email design matching acknowledgment email
-- ✅ Welcome email with 5-section structure as specified
-- ✅ Rejection email with professional messaging
-- ✅ Template variable system for dynamic content
-- ✅ Make.com automation blueprint
-- ✅ Comprehensive setup documentation
-- ✅ Error handling and troubleshooting guides
-
-## Notes
-
-- The HTML templates need to be manually copied into Notion's Email Templates database
-- Make.com scenario requires manual creation using the blueprint as a guide
-- Template variable replacement uses Make.com's Code module or Text Parser
-- Gmail drafts are created for manual review before sending
-- Notion records are updated to track draft creation status
+Remove route from `TOOLS_ROUTES` array in `middleware.ts`.
 
 ## Support
 
-Refer to `docs/MAKE_AUTOMATION_SETUP.md` for detailed setup instructions and troubleshooting.
+For detailed information, see:
+- Setup Guide: `docs/TOOLS_SUBDOMAIN_SETUP.md`
+- Deployment Checklist: `docs/SUBDOMAIN_DEPLOYMENT_CHECKLIST.md`
+- Client Message Usage: `docs/CLIENT_MESSAGE_TEMPLATE_USAGE.md`
+
+## Implementation Date
+
+**Completed:** January 28, 2026
+
+**Status:** ✅ Ready for Deployment
