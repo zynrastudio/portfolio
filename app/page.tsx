@@ -69,7 +69,8 @@ export default function Home() {
           badgeText="For AI Founders"
           badgeLabel="Strategy calls open"
           ctaButtons={[
-            { text: "Book Founder Strategy Call", href: "/contact", primary: true }
+            { text: "Book Founder Strategy Call", href: "/contact", primary: true },
+            { text: "Get a free AI Product Activation Audit", href: "/audit", primary: false }
           ]}
           microDetails={["Product Completion", "UI/UX Activation", "GEO & Discoverability"]}
         />

@@ -94,7 +94,13 @@ export default function FounderProblemsSection() {
         <div className="absolute top-0 left-1/2 -translate-x-1/2 -z-10 h-[400px] w-[400px] bg-white/[0.02] blur-[120px] rounded-full" />
         <div className="absolute bottom-0 right-0 -z-10 h-[300px] w-[300px] bg-white/[0.02] blur-[100px] rounded-full" />
 
-        <div ref={headingRef}>
+        <div ref={headingRef} className="flex flex-col items-center text-center">
+          <p className="text-xl font-light tracking-tight text-white/90 sm:text-2xl mb-2">
+            You&apos;ve built something powerful.
+          </p>
+          <p className="text-xl font-light tracking-tight text-white/90 sm:text-2xl mb-8">
+            It just needs clarity, completion and activation.
+          </p>
           <SectionHeading
             badge="Sound familiar?"
             title="Where Early AI Founders Get Stuck"
