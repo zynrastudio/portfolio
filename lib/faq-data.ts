@@ -5,27 +5,27 @@ export interface FAQItem {
 
 export const faqs: FAQItem[] = [
   {
-    question: 'What services does Zynra Studio offer?',
-    answer: 'Zynra Studio specializes in web development, mobile app development, UI/UX design, and AI solutions. We build scalable web applications using React and Next.js, develop high-performance iOS and Android apps, create user-centered designs, and integrate intelligent AI agents and LLM-powered solutions.',
+    question: 'Who does Zynra Studio work with?',
+    answer: 'We work with early-stage AI founders: pre-launch to early traction. Solo founders and small teams building AI products. We focus on product completion, AI UX and conversion, and GEO visibility. We don\'t target enterprise.',
   },
   {
-    question: 'How long does it take to develop a custom web application?',
-    answer: 'The timeline for a custom web application depends on the project scope and complexity. A simple website typically takes 2-4 weeks, while a full-featured web application can take 2-5 months. We provide detailed project timelines during our initial consultation and maintain transparent communication throughout the development process.',
+    question: 'What does "activation" mean?',
+    answer: 'Activation means getting your product to a state where it converts and reaches real users. For us that includes: finishing advanced features so you can ship, making your AI workflow intuitive and conversion-focused, and making your product visible in generative search (ChatGPT, Perplexity, etc.).',
   },
   {
-    question: 'Do you provide ongoing maintenance and support?',
-    answer: 'Yes, we offer comprehensive maintenance and support packages. This includes bug fixes, security updates, performance optimization, feature enhancements, and technical support. We work with clients to create a maintenance plan that fits their needs and budget.',
+    question: 'What is GEO and why does it matter?',
+    answer: 'GEO (Generative Engine Optimization) is about being discoverable where AI answers are generated — in ChatGPT, Perplexity, and similar tools. We help with entity structure, answer-based content, and AI engine discoverability so your product shows up when people ask relevant questions.',
   },
   {
-    question: 'What technologies does Zynra Studio use?',
-    answer: 'We use modern, industry-standard technologies including React, Next.js, TypeScript, Node.js, React Native, PostgreSQL, and various AI/ML frameworks. Our tech stack is chosen based on project requirements, ensuring optimal performance, scalability, and maintainability.',
+    question: 'How does the engagement work?',
+    answer: 'We start with a Founder Strategy Call to align on where you\'re stuck. Then we scope a focused engagement — product completion, AI UX and conversion, or GEO — in clear phases. No long lock-in or vague retainers. You stay in control of scope and budget.',
   },
   {
-    question: 'Can you help with both design and development?',
-    answer: 'Absolutely. Zynra Studio offers full-service design and development. Our UI/UX designers work closely with developers to ensure seamless implementation of designs, creating cohesive user experiences from concept to deployment.',
+    question: 'Do you help with technical build as well as UX?',
+    answer: 'Yes. We do advanced feature implementation, AI agent architecture, integrations (OpenAI, Supabase, Stripe), and performance optimization. We also redesign onboarding, demo experiences, and landing pages for conversion. It depends on what you need.',
   },
   {
-    question: 'How do I get started with a project?',
-    answer: 'Getting started is easy. Simply book a consultation call through our contact page, and we\'ll discuss your project requirements, timeline, and budget. We\'ll provide a detailed proposal and quote, and once approved, we\'ll begin the development process with regular updates and milestones.',
+    question: 'How do I get started?',
+    answer: 'Book a Founder Strategy Call via our contact page. We\'ll discuss your situation, where you\'re stuck, and whether we\'re a fit. From there we define outcomes and next steps.',
   },
 ];

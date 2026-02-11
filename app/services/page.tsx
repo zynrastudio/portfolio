@@ -6,75 +6,54 @@ import Header from '@/components/ui/header';
 import Footer from '@/components/ui/footer';
 import SectionContainer from '@/components/ui/section-container';
 import Link from 'next/link';
-import { QuoteDialog } from '@/components/ui/quote-dialog';
 
 export const metadata: Metadata = generateMetadata({
-  title: 'Our Services',
-  description: 'Zynra Studio offers comprehensive web and mobile development services. From custom web applications to mobile apps, we deliver scalable, elegant digital solutions tailored to your needs.',
+  title: 'Services for AI Founders',
+  description: 'Product completion, UI/UX and conversion, GEO visibility. We help early-stage AI founders launch, complete, and activate their products.',
   path: '/services',
   keywords: [
-    'web development services',
-    'mobile app development services',
-    'custom software development',
-    'React development',
-    'Next.js development',
-    'UI/UX design services',
-    'full-stack development',
+    'product completion',
+    'UI/UX',
+    'GEO',
+    'AI founders',
+    'generative engine optimization',
+    'founder strategy call',
   ],
 });
 
 const services = [
   {
-    title: 'Web Development',
-    description: 'Custom web applications built with modern technologies and best practices',
+    title: 'Product Completion & Advanced Builds',
+    description: 'We help you finish what you started. For non-technical or overwhelmed founders.',
     features: [
-      'Responsive Design',
-      'Performance Optimization',
-      'SEO Best Practices',
-      'Progressive Web Apps',
-      'E-commerce Solutions',
-      'Content Management Systems',
+      'Advanced feature implementation',
+      'AI agent architecture',
+      'Integrations (OpenAI, Supabase, Stripe)',
+      'Performance optimization',
     ],
-    tech: ['React', 'Next.js', 'TypeScript', 'Node.js'],
+    tech: ['React', 'Next.js', 'TypeScript', 'OpenAI', 'Supabase'],
   },
   {
-    title: 'Mobile Development',
-    description: 'Native and cross-platform mobile applications for iOS and Android',
+    title: 'AI UX & Conversion Activation',
+    description: 'Make your AI product intuitive and usable. From onboarding to conversion.',
     features: [
-      'Native iOS & Android',
-      'Cross-Platform Solutions',
-      'Offline Functionality',
-      'Push Notifications',
-      'App Store Optimization',
-      'Maintenance & Support',
+      'AI workflow simplification',
+      'Onboarding redesign',
+      'Demo experience design',
+      'Conversion-focused landing pages',
     ],
-    tech: ['React Native', 'Flutter', 'Swift', 'Kotlin'],
+    tech: ['Figma', 'Prototyping', 'User flows', 'Analytics'],
   },
   {
-    title: 'UI/UX Design',
-    description: 'User-centered design that combines aesthetics with functionality',
+    title: 'GEO & SEO Visibility',
+    description: 'Be visible where AI search happens. ChatGPT, Perplexity, and beyond.',
     features: [
-      'User Research',
-      'Wireframing & Prototyping',
-      'Visual Design',
-      'Design Systems',
-      'Accessibility (WCAG)',
-      'Usability Testing',
+      'Generative engine optimization',
+      'Entity structure',
+      'Answer-based content',
+      'AI engine discoverability',
     ],
-    tech: ['Figma', 'Adobe XD', 'Sketch', 'Framer'],
-  },
-  {
-    title: 'Consulting & Strategy',
-    description: 'Technical guidance and strategic planning for your digital initiatives',
-    features: [
-      'Technical Architecture',
-      'Technology Selection',
-      'Code Audits',
-      'Performance Analysis',
-      'Team Training',
-      'Project Planning',
-    ],
-    tech: ['Agile', 'DevOps', 'Cloud Infrastructure', 'CI/CD'],
+    tech: ['Structured data', 'Entity SEO', 'Content strategy'],
   },
 ];
 
@@ -91,28 +70,24 @@ export default function ServicesPage() {
   // Generate FAQPage schema
   const faqSchema = generateFAQPageSchema([
     {
-      question: 'What web development technologies do you use?',
-      answer: 'We specialize in modern web technologies including React, Next.js, TypeScript, and Node.js. We build responsive, performant web applications with SEO best practices and progressive web app capabilities.',
+      question: 'Who do you work with?',
+      answer: 'Early-stage AI founders: pre-launch to early traction. We focus on product completion, AI UX, and GEO. We don\'t target enterprise.',
     },
     {
-      question: 'Do you develop native or cross-platform mobile apps?',
-      answer: 'We develop both native iOS/Android applications and cross-platform solutions using React Native and Flutter. We choose the best approach based on your project requirements, timeline, and budget.',
+      question: 'What does product completion include?',
+      answer: 'Advanced feature implementation, AI agent architecture, integrations (OpenAI, Supabase, Stripe), and performance optimization. We help you ship what you started.',
     },
     {
-      question: 'What is included in your UI/UX design services?',
-      answer: 'Our UI/UX design services include user research, wireframing, prototyping, visual design, design systems creation, accessibility compliance (WCAG), and usability testing. We use tools like Figma, Adobe XD, and Framer.',
+      question: 'What is GEO?',
+      answer: 'Generative Engine Optimization — being discoverable where AI answers are generated (ChatGPT, Perplexity). We work on entity structure, answer-based content, and AI engine discoverability.',
     },
     {
-      question: 'How long does a typical project take?',
-      answer: 'Project timelines vary based on scope and complexity. A typical web application takes 8-16 weeks, while mobile apps range from 12-24 weeks. We provide detailed timelines during our initial consultation.',
+      question: 'How does the engagement work?',
+      answer: 'We start with a Founder Strategy Call to align on where you\'re stuck. Then we scope a focused engagement in clear phases. No long lock-in; you stay in control of scope and budget.',
     },
     {
-      question: 'Do you provide ongoing support and maintenance?',
-      answer: 'Yes, we offer ongoing support and maintenance packages. This includes bug fixes, security updates, performance optimization, feature enhancements, and technical support.',
-    },
-    {
-      question: 'What is your development process?',
-      answer: 'We follow an agile methodology with four main phases: Discovery (understanding your needs), Design (creating intuitive experiences), Development (building with quality), and Deployment (launching and support).',
+      question: 'How do I get started?',
+      answer: 'Book a Founder Strategy Call via our contact page. We\'ll discuss your situation and whether we\'re a fit, then define next steps.',
     },
   ]);
 
@@ -150,11 +125,11 @@ export default function ServicesPage() {
         <SectionContainer id="services-hero" className="pt-32 pb-20">
           <div className="max-w-4xl mx-auto">
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-light tracking-tight text-white mb-6">
-              Our <span className="font-extralight text-white/50">Services</span>
+              How we <span className="font-extralight text-white/50">help</span>
             </h1>
             <p className="text-xl md:text-2xl font-light text-white/60 leading-relaxed">
-              Comprehensive digital solutions tailored to bring your vision to life. 
-              From concept to deployment, we handle every aspect of your project.
+              We help early-stage AI founders launch, complete, and activate their products. 
+              Product completion, AI UX and conversion, GEO visibility. Focused engagements, clear outcomes.
             </p>
           </div>
         </SectionContainer>
@@ -175,15 +150,6 @@ export default function ServicesPage() {
                   </h2>
                   <p className="text-lg font-light text-white/70 leading-relaxed mb-6">
                     {service.description}
-                    {index === 0 && (
-                      <> See our <Link href="/projects/voiceventure-ai" className="text-white underline hover:text-white/70">VoiceVenture AI</Link> and <Link href="/projects/esplit" className="text-white underline hover:text-white/70">Esplit</Link> projects for examples.</>
-                    )}
-                    {index === 1 && (
-                      <> Check out <Link href="/projects/spacel" className="text-white underline hover:text-white/70">Spacel</Link> and <Link href="/projects/voiceventure-ai" className="text-white underline hover:text-white/70">VoiceVenture AI</Link> mobile apps.</>
-                    )}
-                    {index === 2 && (
-                      <> Explore our design work in <Link href="/projects/project-sync" className="text-white underline hover:text-white/70">Project Sync</Link> and <Link href="/projects" className="text-white underline hover:text-white/70">other projects</Link>.</>
-                    )}
                   </p>
                   <div className="flex flex-wrap gap-2 mb-4">
                     {service.tech.map((tech) => (
@@ -195,11 +161,12 @@ export default function ServicesPage() {
                       </span>
                     ))}
                   </div>
-                  <QuoteDialog service={service.title}>
-                    <button className="inline-block text-sm font-light text-white/60 hover:text-white underline">
-                      Get a quote for {service.title} →
-                    </button>
-                  </QuoteDialog>
+                  <Link
+                    href="/contact"
+                    className="inline-block text-sm font-light text-white/60 hover:text-white underline"
+                  >
+                    Book Founder Strategy Call →
+                  </Link>
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                   {service.features.map((feature) => (
@@ -219,24 +186,23 @@ export default function ServicesPage() {
         <SectionContainer className="py-20">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-light tracking-tight text-white mb-6">
-              Our Development Process
+              How we work
             </h2>
             <p className="text-lg font-light text-white/70 leading-relaxed mb-12">
-              We follow a proven methodology to ensure successful project delivery
+              Strategy call first. Then we scope a focused engagement. No vague retainers.
             </p>
-            <div className="grid md:grid-cols-4 gap-8">
-              {['Discovery', 'Design', 'Development', 'Deployment'].map((phase, index) => (
-                <div key={phase} className="relative">
+            <div className="grid md:grid-cols-3 gap-8">
+              {[
+                { phase: 'Strategy call', desc: 'Align on where you\'re stuck and what would move the needle' },
+                { phase: 'Scope', desc: 'Define outcomes and phases. You stay in control of scope and budget' },
+                { phase: 'Build / Activate', desc: 'Execute. Product completion, AI UX, or GEO — whatever you need' },
+              ].map((item, index) => (
+                <div key={item.phase} className="relative">
                   <div className="text-4xl font-extralight text-white/20 mb-4">
                     {String(index + 1).padStart(2, '0')}
                   </div>
-                  <h3 className="text-xl font-light text-white mb-2">{phase}</h3>
-                  <p className="text-sm font-light text-white/60">
-                    {index === 0 && 'Understanding your needs and goals'}
-                    {index === 1 && 'Creating intuitive user experiences'}
-                    {index === 2 && 'Building with quality and precision'}
-                    {index === 3 && 'Launching and ongoing support'}
-                  </p>
+                  <h3 className="text-xl font-light text-white mb-2">{item.phase}</h3>
+                  <p className="text-sm font-light text-white/60">{item.desc}</p>
                 </div>
               ))}
             </div>
@@ -246,16 +212,16 @@ export default function ServicesPage() {
         <SectionContainer className="py-20">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-light tracking-tight text-white mb-6">
-              Ready to Get Started?
+              Ready to get unstuck?
             </h2>
             <p className="text-lg font-light text-white/70 leading-relaxed mb-8">
-              Let&apos;s discuss how we can help bring your project to life
+              Book a Founder Strategy Call. We&apos;ll align on your situation and next steps.
             </p>
             <Link
               href="/contact"
-              className="inline-block px-8 py-4 rounded-full bg-white text-black font-light tracking-tight hover:bg-white/90 transition-colors duration-300"
+              className="inline-block px-8 py-4 rounded-2xl bg-white text-black font-light tracking-tight hover:bg-white/90 transition-colors duration-300"
             >
-              Book a Call
+              Book Founder Strategy Call
             </Link>
           </div>
         </SectionContainer>

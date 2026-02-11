@@ -1,7 +1,7 @@
 'use client';
 
 import SectionContainer, { SectionHeading } from './section-container';
-import { Code2, Smartphone, Palette, Bot, CheckCircle2 } from 'lucide-react';
+import { Wrench, Sparkles, Search, CheckCircle2 } from 'lucide-react';
 import { useRef } from 'react';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
@@ -12,32 +12,27 @@ gsap.registerPlugin(ScrollTrigger);
 
 const highlights = [
   {
-    icon: Code2,
-    title: 'Web Development',
-    description: 'Scalable web architectures using React and Next.js.',
+    icon: Wrench,
+    title: 'Product Completion',
+    description: 'Finish advanced features, integrations, and architecture so you can ship.',
   },
   {
-    icon: Smartphone,
-    title: 'Mobile Apps',
-    description: 'High-performance iOS and Android applications.',
+    icon: Sparkles,
+    title: 'AI UX & Conversion',
+    description: 'Make your AI product intuitive and conversion-ready.',
   },
   {
-    icon: Palette,
-    title: 'UI/UX Design',
-    description: 'User-centered design that combines aesthetics with functionality.',
-  },
-  {
-    icon: Bot,
-    title: 'AI Solutions',
-    description: 'Intelligent agents and LLM-powered integrations.',
+    icon: Search,
+    title: 'GEO & Discoverability',
+    description: 'Visible where AI search happens — ChatGPT, Perplexity, and beyond.',
   },
 ];
 
 const stats = [
-  'Clean & Maintainable Code',
-  'Performance-First Approach',
-  'User-Centric Design',
-  'Innovative Problem Solving',
+  'Ship faster with focused engagements',
+  'Clear AI UX that converts',
+  'Visible in AI search',
+  'No long lock-in — defined outcomes',
 ];
 
 export default function AboutSection() {
@@ -71,8 +66,8 @@ export default function AboutSection() {
 
       <SectionHeading
         badge="About Us"
-        title="Building Digital Excellence"
-        subtitle="A dedicated team transforming visions into powerful, scalable digital solutions."
+        title="Partner with early-stage AI founders"
+        subtitle="We help you launch, complete, and activate your AI product — with clarity and speed."
       />
 
       <div ref={containerRef} className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
@@ -80,18 +75,16 @@ export default function AboutSection() {
         <div className="lg:col-span-7 space-y-8">
           <div className="space-y-4">
             <h3 className="text-2xl font-light tracking-tight text-white/90">
-              Who <span className="font-normal text-white">We Are</span>
+              Who <span className="font-normal text-white">we work with</span>
             </h3>
             <p className="text-base font-light leading-relaxed tracking-tight text-white/75 sm:text-lg">
-              Zynra Studio is a modern digital agency specializing in web and mobile development. 
-              We don&apos;t just write code—we <span className="text-white">craft experiences</span> that 
-              drive real business results. From AI-powered applications to intuitive mobile interfaces, 
-              our team brings technical expertise and creative vision to every project.
+              Zynra Studio partners with early-stage founders building AI products. We focus on 
+              <span className="text-white"> product completion</span>, <span className="text-white">AI UX and conversion</span>, and 
+              <span className="text-white"> GEO visibility</span> so you can ship, get users, and show up where AI search happens.
             </p>
             <p className="text-base font-light leading-relaxed tracking-tight text-white/75 sm:text-lg">
-              We partner with forward-thinking businesses to build products that users love and that 
-              scale with your growth. Our approach combines cutting-edge technology with timeless 
-              design principles to deliver solutions that stand the test of time.
+              We work in clear phases with defined outcomes. No vague retainers. You stay in control of scope and budget. 
+              We don&apos;t do enterprise — we work with founders from pre-launch to early traction.
             </p>
           </div>
 
@@ -118,7 +111,7 @@ export default function AboutSection() {
               href="/contact"
               className="rounded-2xl border border-white/10 bg-white/5 px-6 py-3 text-sm font-light tracking-tight text-white backdrop-blur-sm hover:bg-white/10 hover:border-white/20"
             >
-              Start a Project
+              Book Founder Strategy Call
             </Link>
           </div>
         </div>

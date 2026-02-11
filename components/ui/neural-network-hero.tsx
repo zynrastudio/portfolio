@@ -148,7 +148,7 @@ export default function Hero({
             <span className="text-[11px] font-light tracking-tight text-white/80">{badgeText}</span>
           </div>
 
-          <h1 ref={headerRef} className="text-left text-5xl font-extralight leading-[1.1] tracking-tighter text-white sm:text-7xl md:text-8xl will-change-transform">
+          <h1 ref={headerRef} className="text-left text-4xl font-extralight leading-[1.12] tracking-tighter text-white sm:text-5xl md:text-6xl lg:text-7xl max-w-5xl will-change-transform">
             {title}
           </h1>
 

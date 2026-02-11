@@ -8,9 +8,10 @@ import gsap from 'gsap';
 import Link from 'next/link';
 
 const navItems = [
-  { label: 'About', href: '/about' },
+  { label: 'For Founders', href: '/for-founders' },
   { label: 'Services', href: '/services' },
   { label: 'Projects', href: '/projects' },
+  { label: 'About', href: '/about' },
   { label: 'Contact', href: '/contact' },
 ];
 

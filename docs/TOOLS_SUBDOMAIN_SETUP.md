@@ -1,13 +1,15 @@
 # Tools Subdomain Setup Guide
 
-This guide explains how the tools subdomain (`tools.zynra.studio`) is configured and how to set it up for your deployment.
+> **Note:** As of the portal UI update, tools (send-message, contract generation, etc.) have been **moved to the Admin Portal**. They are now available at **admin.zynra.studio/tools/send-message** and are restricted to staff users. The tools subdomain (`tools.zynra.studio`) is no longer used. This document is kept for historical reference.
 
-## Overview
+This guide explains how the tools subdomain (`tools.zynra.studio`) was previously configured.
 
-The send-message functionality and related tools are isolated to a separate subdomain for security purposes. This means:
+## Overview (Historical)
+
+The send-message functionality and related tools were isolated to a separate subdomain for security purposes. They are now in the admin portal:
 
 - ✅ **Main domain** (`zynra.studio`): Public portfolio, services, projects, and quote form
-- ✅ **Tools subdomain** (`tools.zynra.studio`): Client communication tools, contract generation, and internal APIs
+- ✅ **Admin portal** (`admin.zynra.studio/tools`): Client communication tools, contract generation, and internal APIs (staff only)
 
 ## Architecture
 

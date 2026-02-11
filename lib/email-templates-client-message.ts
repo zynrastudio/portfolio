@@ -33,7 +33,6 @@ export function generateClientMessageEmail(
     ctaButton,
     additionalInfo,
     signature,
-    company,
   } = data
 
   // Default signature - always use "Zynra Studio Team" if empty or not provided

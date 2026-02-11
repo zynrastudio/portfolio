@@ -8,10 +8,10 @@ import Header from "@/components/ui/header";
 import Footer from "@/components/ui/footer";
 
 // Lazy load below-the-fold components for better initial page load
-const AboutSection = dynamic(() => import("@/components/ui/about-section"), {
-  loading: () => <div className="min-h-[400px]" />,
+const FounderProblemsSection = dynamic(() => import("@/components/ui/founder-problems-section"), {
+  loading: () => <div className="min-h-[300px]" />,
 });
-const SkillsSection = dynamic(() => import("@/components/ui/skills-section"), {
+const ActivationPillarsSection = dynamic(() => import("@/components/ui/activation-pillars-section"), {
   loading: () => <div className="min-h-[400px]" />,
 });
 const ProjectsSection = dynamic(() => import("@/components/ui/projects-section"), {
@@ -28,19 +28,18 @@ const ContactSection = dynamic(() => import("@/components/ui/contact-section"), 
 });
 
 export const metadata: Metadata = generatePageMetadata({
-  title: 'Zynra Studio - Web & Mobile Development Agency | Custom Digital Solutions',
-  description: 'Zynra Studio is a modern web and mobile development agency specializing in building elegant, scalable digital solutions. We transform ideas into powerful applications with React, Next.js, and cutting-edge technologies.',
+  title: 'Zynra Studio - For Early AI Founders | Launch, Complete & Activate Your Product',
+  description: 'We help early AI founders launch, complete, and activate their products. Product completion, AI UX, and GEO visibility for generative search.',
   path: '/',
   keywords: [
-    'web development agency',
-    'mobile app development',
-    'custom web applications',
-    'React development',
-    'Next.js development',
-    'UI/UX design agency',
-    'full-stack development',
-    'software development company',
-    'digital solutions',
+    'AI founders',
+    'AI product launch',
+    'product completion',
+    'AI UX',
+    'GEO',
+    'generative engine optimization',
+    'early-stage founders',
+    'AI startup',
   ],
 });
 
@@ -65,18 +64,17 @@ export default function Home() {
       <Header />
       <main>
         <Hero 
-          title="Crafting Elegant Digital Solutions"
-          description="Zynra Studio specializes in web and mobile development. We transform your vision into powerful, user-friendly applications that drive results."
-          badgeText="Available for Projects"
-          badgeLabel="Open"
+          title="Launch Your Product With Clarity, Speed & Traction"
+          description="Zynra Studio partners with early-stage founders to complete advanced features, refine UI/UX, and activate products for real users — including GEO visibility inside generative search engines."
+          badgeText="For AI Founders"
+          badgeLabel="Strategy calls open"
           ctaButtons={[
-            { text: "Book a Call", href: "/contact", primary: true },
-            { text: "Get a Quote", href: "/services" }
+            { text: "Book Founder Strategy Call", href: "/contact", primary: true }
           ]}
-          microDetails={["Web Development", "Mobile Apps", "UI/UX Design"]}
+          microDetails={["Product Completion", "UI/UX Activation", "GEO & Discoverability"]}
         />
-        <AboutSection />
-        <SkillsSection />
+        <FounderProblemsSection />
+        <ActivationPillarsSection />
         <ProjectsSection />
         <TestimonialsSection />
         <FAQSection />

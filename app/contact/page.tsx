@@ -8,16 +8,15 @@ import SectionContainer from '@/components/ui/section-container';
 import ContactSection from '@/components/ui/contact-section';
 
 export const metadata: Metadata = generateMetadata({
-  title: 'Contact Us',
-  description: "Get in touch with Zynra Studio. We're ready to discuss your project and help transform your ideas into elegant digital solutions. Contact us today to start your journey.",
+  title: 'Book a Founder Strategy Call',
+  description: "Book a Founder Strategy Call with Zynra Studio. We'll align on your situation and whether we're a fit. For early-stage AI founders.",
   path: '/contact',
   keywords: [
+    'founder strategy call',
+    'AI founders',
     'contact zynra studio',
-    'get in touch',
-    'web development inquiry',
-    'project consultation',
-    'hire developers',
-    'contact agency',
+    'book a call',
+    'early-stage startup',
   ],
 });
 
@@ -48,11 +47,11 @@ export default function ContactPage() {
         <SectionContainer id="contact-hero" className="pt-32 pb-20">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-light tracking-tight text-white mb-6">
-              Let&apos;s Work <span className="font-extralight text-white/50">Together</span>
+              Book a <span className="font-extralight text-white/50">Founder Strategy Call</span>
             </h1>
             <p className="text-xl md:text-2xl font-light text-white/60 leading-relaxed">
-              Have a project in mind? We&apos;d love to hear about it. 
-              Reach out and let&apos;s create something amazing together.
+              We&apos;ll align on your situation and whether we&apos;re a fit. 
+              No pitch — just a clear conversation. For early-stage AI founders.
             </p>
           </div>
         </SectionContainer>

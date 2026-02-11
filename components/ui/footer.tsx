@@ -65,7 +65,7 @@ export default function Footer() {
           {/* Minimalist Tagline */}
           <div className="hidden lg:block">
             <span className="text-[10px] font-extralight uppercase tracking-[0.3em] text-white/20">
-              Elegant Digital Solutions
+              Launch. Complete. Activate.
             </span>
           </div>
         </div>
