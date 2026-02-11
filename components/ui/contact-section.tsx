@@ -82,8 +82,8 @@ export default function ContactSection() {
 
       <SectionHeading
         badge="Connect"
-        title="Start a Conversation"
-        subtitle="Schedule a meeting or reach out through your preferred platform. We're always open to discussing new projects and opportunities."
+        title="See If We're a Fit"
+        subtitle="Book a Founder Strategy Call. We'll align on your situation and whether we're a fit."
       />
 
       <div ref={containerRef} className="mx-auto max-w-5xl space-y-16">
